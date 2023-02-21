@@ -1,4 +1,28 @@
-<progress id="file" [value]="progress" max="100"> </progress>
-<div class="con">
-    <img *ngFor="let user of url" [src] = 'user' alt="" width="70" height="50">
+<progress
+  *ngIf="progress < 100"
+  id="file"
+  [value]="progress"
+  max="100"
+></progress>
+<div *ngIf="progress >= 100" (wheel)="seekVideo($event)">
+  <div>
+    <video #video_player controls [src]="video"></video>
+  </div>
+  <div class="seek-container">
+    <div id="el1">el1</div>
+
+    <div #seek class="con">
+      <img
+        *ngFor="let user of url"
+        [src]="user"
+        alt=""
+        width="70"
+        height="50"
+      />
+    </div>
+  </div>
 </div>
+
+<button (click)="captureThumb()">Capture</button>
+
+<div #output class="con"></div>
