@@ -62,48 +62,46 @@ export class AppComponent {
     );
     this.progress = 100;
 
-    // let file = await fetchFile(vid_blob);
+    let file = await fetchFile(this.vid_blob);
 
-    // ffmpeg.FS('writeFile', 'test.mp4', file);
-    // ffmpeg.FS('mkdir', '/out');
-    // await ffmpeg.run('-i', 'test.mp4', '-vf', `fps=23`, `out/out%d.png`);
-    // const da = ffmpeg.FS('readdir', '/out');
-    // console.log(da);
+    ffmpeg.FS('writeFile', 'test.mp4', file);
+    ffmpeg.FS('mkdir', '/out');
+    await ffmpeg.run('-i', 'test.mp4', '-vf', `fps=23`, `out/out%d.png`);
+    const da = ffmpeg.FS('readdir', '/out');
+    console.log(da);
 
-    // for (const file of da) {
-    //   if (file == '.' || file == '..') continue;
-    //   let da_ = ffmpeg.FS('readFile', 'out/' + file);
+    for (const file of da) {
+      if (file == '.' || file == '..') continue;
+      let da_ = ffmpeg.FS('readFile', 'out/' + file);
 
-    //   this.url.push(
-    //     this.domSanitizer.bypassSecurityTrustUrl(
-    //       URL.createObjectURL(new Blob([da_.buffer]))
-    //     )
-    //   );
-    // }
+      this.url.push(
+        this.domSanitizer.bypassSecurityTrustUrl(
+          URL.createObjectURL(new Blob([da_.buffer]))
+        )
+      );
+    }
 
     // ffmpeg -i input.mp4 -vf fps=1 out%d.png
     // data = data.replaceAll('Metadata:', '')
-    // let nData = [];
-    // for (const val of data) {
-    //   if (
-    //     val.includes('Video: ') ||
-    //     val.includes('Duration: ') ||
-    //     val.includes('Audio: ')
-    //   )
-    //     console.log(val.trim());
-    //   if (val.includes('Video: ')) {
-    //     meta.fps = parseFloat(val.split(',')[4]);
-    //     meta.res = val.split(',')[2];
-    //     console.log(meta);
-    //     console.log();
-    //   }
-    // }
-    // console.log(JSON.stringify(data), data);
-    // console.log(da);
+    let nData = [];
+    for (const val of data) {
+      if (
+        val.includes('Video: ') ||
+        val.includes('Duration: ') ||
+        val.includes('Audio: ')
+      )
+        console.log(val.trim());
+      if (val.includes('Video: ')) {
+        meta.fps = parseFloat(val.split(',')[4]);
+        meta.res = val.split(',')[2];
+        console.log(meta);
+        console.log();
+      }
+    }
+    console.log(JSON.stringify(data), data);
+    console.log(da);
   }
   seekVideo(event: any) {
-    // console.log(event);
-    // event.preventDefault();
     if (event.deltaX !== 0) {
       if (event.deltaX < 0) {
         console.log('scrolling up');
@@ -116,104 +114,7 @@ export class AppComponent {
       }
     }
   }
-  // moveFarward(id) {
-  //   const video_element = document.getElementById(id);
-  //   video_element.currentTime += 1 / 30;
 
-  //   // if (curframe <= frameCount) {
-  //   //   curframe += 1;
-  //   //   CurrentFrameElement.innerHTML = "Current Frame Number : " + curframe;
-  //   // }
-  // }
-  // moveBackward(id) {
-  //   const video_element = document.getElementById(id);
-  //   video_element.currentTime -= 1 / 30;
 
-  //   // if (curframe > 0) {
-  //   //   curframe -= 1;
-  //   //   CurrentFrameElement.innerHTML = "Current Frame Number : " + curframe;
-  //   // }
-  // }
-  async captureThumb() {
-    for (
-      let i = 0.0;
-      i < this.video_player.nativeElement.duration;
-      i += 1 / 23
-    ) {
-      // console.log(this.video_player.nativeElement.currentTime, i);
 
-      // this.video_player.nativeElement.currentTime = i;
-      let blob = await this.getVideoCover(this.video_player.nativeElement, i);
-
-      this.url.push(
-        this.domSanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob))
-      );
-    }
-  }
-
-  createImage() {
-    let canvas = document.createElement('canvas');
-    let ctx = canvas.getContext('2d');
-    canvas.width = this.video_player.nativeElement.videoWidth;
-    canvas.height = this.video_player.nativeElement.videoHeight;
-    ctx?.drawImage(
-      this.video_player.nativeElement,
-      0,
-      0,
-      this.video_player.nativeElement.videoWidth,
-      this.video_player.nativeElement.videoHeight
-    );
-    this.output.nativeElement.appendChild(canvas);
-  }
-
-  getVideoCover(videoPlayer: HTMLVideoElement, seekTo = 0.0) {
-    return new Promise<Blob | MediaSource>((resolve, reject) => {
-      // load the file to a video player
-      // delay seeking or else 'seeked' event won't fire on Safari
-      setTimeout(() => {
-        videoPlayer.currentTime = seekTo;
-      },20);
-
-      // extract video thumbnail once seeking is complete
-      videoPlayer.addEventListener('seeked', () => {
-        console.log('video is now paused at %ss.', seekTo);
-        // define a canvas to have the same dimension as the video
-        const canvas = document.createElement('canvas');
-        canvas.width = videoPlayer.videoWidth;
-        canvas.height = videoPlayer.videoHeight;
-        // draw the video frame to canvas
-        const ctx = canvas.getContext('2d');
-        ctx?.drawImage(videoPlayer, 0, 0, canvas.width, canvas.height);
-        // return the canvas image as a blob
-        ctx?.canvas.toBlob(
-          (blob: any) => resolve(blob),
-          'image/jpeg',
-          0.75 /* quality */
-        );
-      });
-    });
-  }
 }
-
-// this.video_player.nativeElement.addEventListener(
-//   'loadeddata',
-//   (e: any) => {
-//     this.loadTime();
-//   },
-//   false
-// );
-// this.video_player.nativeElement.addEventListener(
-//   'ended',
-//   (e: any) => {
-//     this.ended = true;
-//   },
-//   false
-// );
-// this.video_player.nativeElement.addEventListener(
-//   'seeked',
-//   () => {
-//     this.createImage();
-//     this.loadTime();
-//   },
-//   false
-// );
