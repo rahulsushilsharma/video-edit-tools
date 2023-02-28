@@ -43,9 +43,13 @@ canvas {
     width: 100px;
 }
 
+mat-slider {
+    width: 100%;
+  }
 
 
-.trim_slider{
+
+/* .trim_slider{
     display: grid;
     grid-template-columns: 1fr 1fr;
-}
+} */
