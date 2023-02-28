@@ -7,6 +7,14 @@
     
 }
 
+.video_container{
+    padding: 1rem;
+}
+
+video{
+    aspect-ratio: 16/9;
+}
+
 img {
     border-right: 2px gray solid;
 }
@@ -33,4 +41,11 @@ img {
 canvas {
     display: inline;
     width: 100px;
+}
+
+
+
+.trim_slider{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }

@@ -101,6 +101,11 @@ export class AppComponent {
       }
     }
   }
+  range(val:any){
+    console.log(val);
+    
+      
+  }
   async captureThumb(){
     let start = new Date().getTime()
     ffmpeg.FS('writeFile', 'test.mp4', this.file);
@@ -137,6 +142,8 @@ export class AppComponent {
         )
       );
     }
+
+    
   }
 
 

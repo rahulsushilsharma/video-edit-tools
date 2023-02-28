@@ -4,9 +4,21 @@
   [value]="progress"
   max="100"
 ></progress>
-<div (wheel)="seekVideo($event)">
+<div (wheel)="seekVideo($event)" class="video_container">
   <div>
-    <video #video_player controls [src]="video"></video>
+    <video
+      id="my-video"
+      class="video-js"
+      controls
+      preload="auto"
+      #video_player
+      controls
+      [src]="video"
+    ></video>
+  </div>
+  <div class="trim_slider">
+    <input #start_range (change)="range(start_range.value)" value="500" min="0" max="60" step="0.1" type="range" />
+    <input #end_range (change)="range(end_range.value)" value="50000" min="0" max="60" step="0.1" type="range" />
   </div>
   <div class="seek-container">
     <div id="el1">el1</div>
