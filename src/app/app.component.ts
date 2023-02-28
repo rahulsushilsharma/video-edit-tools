@@ -19,6 +19,7 @@ export class AppComponent {
   video: any;
   ended = false;
   vid_blob: any;
+  file: any
   constructor(private domSanitizer: DomSanitizer) {
     this.loadFfmpeg();
   }
@@ -30,6 +31,7 @@ export class AppComponent {
     let count = 0;
     let found = false;
     let data: any[] = [];
+    
     ffmpeg.setProgress(({ ratio }) => {
       console.log(ratio);
       this.progress = ratio * 100;
@@ -62,24 +64,9 @@ export class AppComponent {
     );
     this.progress = 100;
 
-    // let file = await fetchFile(vid_blob);
+    this.file = await fetchFile(this.vid_blob);
 
-    // ffmpeg.FS('writeFile', 'test.mp4', file);
-    // ffmpeg.FS('mkdir', '/out');
-    // await ffmpeg.run('-i', 'test.mp4', '-vf', `fps=23`, `out/out%d.png`);
-    // const da = ffmpeg.FS('readdir', '/out');
-    // console.log(da);
-
-    // for (const file of da) {
-    //   if (file == '.' || file == '..') continue;
-    //   let da_ = ffmpeg.FS('readFile', 'out/' + file);
-
-    //   this.url.push(
-    //     this.domSanitizer.bypassSecurityTrustUrl(
-    //       URL.createObjectURL(new Blob([da_.buffer]))
-    //     )
-    //   );
-    // }
+    
 
     // ffmpeg -i input.mp4 -vf fps=1 out%d.png
     // data = data.replaceAll('Metadata:', '')
@@ -102,8 +89,6 @@ export class AppComponent {
     // console.log(da);
   }
   seekVideo(event: any) {
-    // console.log(event);
-    // event.preventDefault();
     if (event.deltaX !== 0) {
       if (event.deltaX < 0) {
         console.log('scrolling up');
@@ -116,104 +101,50 @@ export class AppComponent {
       }
     }
   }
-  // moveFarward(id) {
-  //   const video_element = document.getElementById(id);
-  //   video_element.currentTime += 1 / 30;
+  range(val:any){
+    console.log(val);
+    
+      
+  }
+  async captureThumb(){
+    let start = new Date().getTime()
+    ffmpeg.FS('writeFile', 'test.mp4', this.file);
+    let end = new Date().getTime()
+    console.log('write file completed' ,end - start);
 
-  //   // if (curframe <= frameCount) {
-  //   //   curframe += 1;
-  //   //   CurrentFrameElement.innerHTML = "Current Frame Number : " + curframe;
-  //   // }
-  // }
-  // moveBackward(id) {
-  //   const video_element = document.getElementById(id);
-  //   video_element.currentTime -= 1 / 30;
+    // start  = new Date().getTime()
+    // await ffmpeg.run('-i', 'test.mp4', '-vf', `fps=23`, `out/out%d.png`);
+    // end  = new Date().getTime()
+    // console.log('compress file completed' ,end - start);
+    
+    ffmpeg.FS('mkdir', '/out');
 
-  //   // if (curframe > 0) {
-  //   //   curframe -= 1;
-  //   //   CurrentFrameElement.innerHTML = "Current Frame Number : " + curframe;
-  //   // }
-  // }
-  async captureThumb() {
-    for (
-      let i = 0.0;
-      i < this.video_player.nativeElement.duration;
-      i += 1 / 23
-    ) {
-      // console.log(this.video_player.nativeElement.currentTime, i);
+    start  = new Date().getTime()
+    await ffmpeg.run('-i', 'test.mp4','-preset','ultrafast',`out/out%d.png`);
+    end  = new Date().getTime()
+    console.log('image extracted old file file completed' ,end - start);
 
-      // this.video_player.nativeElement.currentTime = i;
-      let blob = await this.getVideoCover(this.video_player.nativeElement, i);
+    // start  = new Date().getTime()
+    // await ffmpeg.run('-i', 'test.mp4', `out/out%d.png`);
+    // end  = new Date().getTime()
+    // console.log('image extracted old file file completed' ,end - start);
+
+    const da = ffmpeg.FS('readdir', '/out');
+    console.log(da);
+
+    for (const file of da) {
+      if (file == '.' || file == '..') continue;
+      let da_ = ffmpeg.FS('readFile', 'out/' + file);
 
       this.url.push(
-        this.domSanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob))
+        this.domSanitizer.bypassSecurityTrustUrl(
+          URL.createObjectURL(new Blob([da_.buffer]))
+        )
       );
     }
+
+    
   }
 
-  createImage() {
-    let canvas = document.createElement('canvas');
-    let ctx = canvas.getContext('2d');
-    canvas.width = this.video_player.nativeElement.videoWidth;
-    canvas.height = this.video_player.nativeElement.videoHeight;
-    ctx?.drawImage(
-      this.video_player.nativeElement,
-      0,
-      0,
-      this.video_player.nativeElement.videoWidth,
-      this.video_player.nativeElement.videoHeight
-    );
-    this.output.nativeElement.appendChild(canvas);
-  }
 
-  getVideoCover(videoPlayer: HTMLVideoElement, seekTo = 0.0) {
-    return new Promise<Blob | MediaSource>((resolve, reject) => {
-      // load the file to a video player
-      // delay seeking or else 'seeked' event won't fire on Safari
-      setTimeout(() => {
-        videoPlayer.currentTime = seekTo;
-      },20);
-
-      // extract video thumbnail once seeking is complete
-      videoPlayer.addEventListener('seeked', () => {
-        console.log('video is now paused at %ss.', seekTo);
-        // define a canvas to have the same dimension as the video
-        const canvas = document.createElement('canvas');
-        canvas.width = videoPlayer.videoWidth;
-        canvas.height = videoPlayer.videoHeight;
-        // draw the video frame to canvas
-        const ctx = canvas.getContext('2d');
-        ctx?.drawImage(videoPlayer, 0, 0, canvas.width, canvas.height);
-        // return the canvas image as a blob
-        ctx?.canvas.toBlob(
-          (blob: any) => resolve(blob),
-          'image/jpeg',
-          0.75 /* quality */
-        );
-      });
-    });
-  }
 }
-
-// this.video_player.nativeElement.addEventListener(
-//   'loadeddata',
-//   (e: any) => {
-//     this.loadTime();
-//   },
-//   false
-// );
-// this.video_player.nativeElement.addEventListener(
-//   'ended',
-//   (e: any) => {
-//     this.ended = true;
-//   },
-//   false
-// );
-// this.video_player.nativeElement.addEventListener(
-//   'seeked',
-//   () => {
-//     this.createImage();
-//     this.loadTime();
-//   },
-//   false
-// );
