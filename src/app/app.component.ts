@@ -19,6 +19,7 @@ export class AppComponent {
   video: any;
   ended = false;
   vid_blob: any;
+  file: any
   constructor(private domSanitizer: DomSanitizer) {
     this.loadFfmpeg();
   }
@@ -30,6 +31,7 @@ export class AppComponent {
     let count = 0;
     let found = false;
     let data: any[] = [];
+    
     ffmpeg.setProgress(({ ratio }) => {
       console.log(ratio);
       this.progress = ratio * 100;
@@ -62,44 +64,29 @@ export class AppComponent {
     );
     this.progress = 100;
 
-    let file = await fetchFile(this.vid_blob);
+    this.file = await fetchFile(this.vid_blob);
 
-    ffmpeg.FS('writeFile', 'test.mp4', file);
-    ffmpeg.FS('mkdir', '/out');
-    await ffmpeg.run('-i', 'test.mp4', '-vf', `fps=23`, `out/out%d.png`);
-    const da = ffmpeg.FS('readdir', '/out');
-    console.log(da);
-
-    for (const file of da) {
-      if (file == '.' || file == '..') continue;
-      let da_ = ffmpeg.FS('readFile', 'out/' + file);
-
-      this.url.push(
-        this.domSanitizer.bypassSecurityTrustUrl(
-          URL.createObjectURL(new Blob([da_.buffer]))
-        )
-      );
-    }
+    
 
     // ffmpeg -i input.mp4 -vf fps=1 out%d.png
     // data = data.replaceAll('Metadata:', '')
-    let nData = [];
-    for (const val of data) {
-      if (
-        val.includes('Video: ') ||
-        val.includes('Duration: ') ||
-        val.includes('Audio: ')
-      )
-        console.log(val.trim());
-      if (val.includes('Video: ')) {
-        meta.fps = parseFloat(val.split(',')[4]);
-        meta.res = val.split(',')[2];
-        console.log(meta);
-        console.log();
-      }
-    }
-    console.log(JSON.stringify(data), data);
-    console.log(da);
+    // let nData = [];
+    // for (const val of data) {
+    //   if (
+    //     val.includes('Video: ') ||
+    //     val.includes('Duration: ') ||
+    //     val.includes('Audio: ')
+    //   )
+    //     console.log(val.trim());
+    //   if (val.includes('Video: ')) {
+    //     meta.fps = parseFloat(val.split(',')[4]);
+    //     meta.res = val.split(',')[2];
+    //     console.log(meta);
+    //     console.log();
+    //   }
+    // }
+    // console.log(JSON.stringify(data), data);
+    // console.log(da);
   }
   seekVideo(event: any) {
     if (event.deltaX !== 0) {
@@ -114,7 +101,43 @@ export class AppComponent {
       }
     }
   }
+  async captureThumb(){
+    let start = new Date().getTime()
+    ffmpeg.FS('writeFile', 'test.mp4', this.file);
+    let end = new Date().getTime()
+    console.log('write file completed' ,end - start);
 
+    // start  = new Date().getTime()
+    // await ffmpeg.run('-i', 'test.mp4', '-vf', `fps=23`, `out/out%d.png`);
+    // end  = new Date().getTime()
+    // console.log('compress file completed' ,end - start);
+    
+    ffmpeg.FS('mkdir', '/out');
+
+    start  = new Date().getTime()
+    await ffmpeg.run('-i', 'test.mp4','-preset','ultrafast',`out/out%d.png`);
+    end  = new Date().getTime()
+    console.log('image extracted old file file completed' ,end - start);
+
+    // start  = new Date().getTime()
+    // await ffmpeg.run('-i', 'test.mp4', `out/out%d.png`);
+    // end  = new Date().getTime()
+    // console.log('image extracted old file file completed' ,end - start);
+
+    const da = ffmpeg.FS('readdir', '/out');
+    console.log(da);
+
+    for (const file of da) {
+      if (file == '.' || file == '..') continue;
+      let da_ = ffmpeg.FS('readFile', 'out/' + file);
+
+      this.url.push(
+        this.domSanitizer.bypassSecurityTrustUrl(
+          URL.createObjectURL(new Blob([da_.buffer]))
+        )
+      );
+    }
+  }
 
 
 }

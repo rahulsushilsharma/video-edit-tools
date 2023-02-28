@@ -4,7 +4,7 @@
   [value]="progress"
   max="100"
 ></progress>
-<div *ngIf="progress >= 100" (wheel)="seekVideo($event)">
+<div (wheel)="seekVideo($event)">
   <div>
     <video #video_player controls [src]="video"></video>
   </div>
@@ -23,6 +23,6 @@
   </div>
 </div>
 
-<!-- <button (click)="captureThumb()">Capture</button> -->
+<button (click)="captureThumb()">Capture</button>
 
 <div #output class="con"></div>
