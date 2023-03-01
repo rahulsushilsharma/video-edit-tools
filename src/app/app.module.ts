@@ -10,13 +10,16 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatSliderModule} from '@angular/material/slider'
+import { VideoPlayerComponent } from './video-player/video-player.component';
+import { VideoTrimComponent } from './video-trim/video-trim.component'
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    VideoPlayerComponent,
+    VideoTrimComponent
   ],
   imports: [
     BrowserModule,
@@ -27,8 +30,7 @@ import {MatSliderModule} from '@angular/material/slider'
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
     BrowserAnimationsModule,
-    MatSlideToggleModule,
-    MatSliderModule,
+    SharedModule,
   ],
   providers: [
     ScreenTrackingService,UserTrackingService
