@@ -9,7 +9,7 @@ import { LoadVideoService } from '../services/load-video.service';
 })
 export class VideoPlayerComponent {
   video: SafeUrl | undefined;
-  
+
   @ViewChild('video_player') video_player: any;
   constructor(
     private domSanitizer: DomSanitizer,
@@ -25,5 +25,8 @@ export class VideoPlayerComponent {
     this.video = this.domSanitizer.bypassSecurityTrustUrl(
       URL.createObjectURL(blob)
     );
+
+    console.log(this.video_player.nativeElement);
+    this.loadVideo.video = this.video_player.nativeElement;
   }
 }

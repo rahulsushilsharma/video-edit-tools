@@ -1,14 +1,12 @@
 import { Injectable, ViewChild } from '@angular/core';
-import { VideoPlayerComponent } from '../video-player/video-player.component';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoadVideoService {
-  VideoDownloadProgress!: number
-  videoBlob!: Blob
-  
-  @ViewChild(VideoPlayerComponent) videoPlayer!: VideoPlayerComponent;
+  VideoDownloadProgress!: number;
+  videoBlob!: Blob;
+  video: any;
 
   constructor() {}
 
@@ -25,13 +23,14 @@ export class LoadVideoService {
       chunks.push(value);
       receivedLength += value.length;
 
-      this.VideoDownloadProgress = (receivedLength / parseInt(contentLength)) * 100;
+      this.VideoDownloadProgress =
+        (receivedLength / parseInt(contentLength)) * 100;
       // console.log(
       //   `Received ${receivedLength} of ${contentLength}`,
       //   (receivedLength / parseInt(contentLength)) * 100
       // );
     }
-    this.videoBlob = new Blob(chunks)
+    this.videoBlob = new Blob(chunks);
     return this.videoBlob;
   }
 }

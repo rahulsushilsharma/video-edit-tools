@@ -4,14 +4,12 @@
   [value]="ffmpeg.progress"
   max="100"
 ></progress>
-<app-video-player>
-  <app-video-trim ></app-video-trim>
+<app-video-player> </app-video-player>
+<app-video-trim *ngIf="trim_"></app-video-trim>
 
-
-</app-video-player>
-<div class="video_container"> 
+<div class="video_container">
   <!--  (wheel)="seekVideo($event)" -->
-  <button mat-raised-button color="primary" (click)="trim()" >trim</button>
+  <button mat-raised-button color="primary" (click)="trim()">trim</button>
   <div class="seek-container">
     <div id="el1">el1</div>
 

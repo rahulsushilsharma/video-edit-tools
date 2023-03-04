@@ -87,9 +87,7 @@ export class AppComponent {
     }
   }
   trim() {
-    this.video_duration = this.videoPlayer.video_player.nativeElement.duration;
-    this.seek_steps = 1 / 60;
-    console.log(this.video_duration, this.seek_steps);
+    
     this.trim_ = true;
   }
 
