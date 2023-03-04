@@ -11,7 +11,6 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VideoPlayerComponent } from './video-player/video-player.component';
-import { VideoTrimComponent } from './video-trim/video-trim.component'
 import { SharedModule } from './shared/shared.module';
 
 
@@ -19,7 +18,6 @@ import { SharedModule } from './shared/shared.module';
   declarations: [
     AppComponent,
     VideoPlayerComponent,
-    VideoTrimComponent
   ],
   imports: [
     BrowserModule,

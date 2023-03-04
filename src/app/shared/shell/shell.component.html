@@ -1,0 +1,20 @@
+<p>shell works!</p>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="push">
+    <p>Auto-resizing sidenav</p>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+    <button mat-raised-button color="primary" (click)="trim()">trim</button>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <button type="button" mat-button (click)="drawer.toggle()">
+      Toggle sidenav
+    </button>
+    <ng-content></ng-content>
+
+    <app-video-trim *ngIf="trim_"></app-video-trim>
+  </div>
+</mat-drawer-container>

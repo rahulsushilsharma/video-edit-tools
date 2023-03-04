@@ -1,5 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { LoadVideoService } from '../services/load-video.service';
+import { LoadVideoService } from '../../services/load-video.service';
 
 @Component({
   selector: 'app-video-trim',
