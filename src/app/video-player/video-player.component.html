@@ -1,7 +1,9 @@
-<p>video-player works!</p>
-<mat-progress-bar mode="determinate" [value]="loadVideo.VideoDownloadProgress"></mat-progress-bar>
-<div *ngIf="loadVideo.VideoDownloadProgress>=100" class="video_container">
-  <div>
+<mat-progress-bar
+  mode="determinate"
+  [value]="loadVideo.VideoDownloadProgress"
+></mat-progress-bar>
+<div *ngIf="loadVideo.VideoDownloadProgress >= 100" >
+  <div class="video_container" >
     <video
       id="my-video"
       class="video-js"
@@ -9,6 +11,8 @@
       preload="auto"
       #video_player
       controls
+      width="620px"
+      height="480px"
       [src]="video"
     ></video>
   </div>

@@ -6,6 +6,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ShellComponent } from './shell/shell.component';
 import { VideoTrimComponent } from './video-trim/video-trim.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatButtonModule} from '@angular/material/button';
 
 const components: any = [ShellComponent,VideoTrimComponent];
 
@@ -15,6 +16,7 @@ const modules = [
   MatSliderModule,
   MatProgressBarModule,
   MatSidenavModule,
+  MatButtonModule,
 ];
 
 @NgModule({

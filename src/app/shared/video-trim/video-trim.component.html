@@ -1,9 +1,10 @@
-<p>video-trim works!</p>
 <div class="trim_slider">
-    <mat-slider  min="0" [max]="video_duration" [step]="seek_steps" >
-      <input  matSliderStartThumb #start_range (change)="forward(start_range.value)">
-      <input matSliderEndThumb #end_range (change)="backward(end_range.value)">
-    </mat-slider>
-    <!-- <input #start_range (change)="range(start_range.value)" value="500" min="0" max="60" step="0.1" type="range" />
-    <input #end_range (change)="range(end_range.value)" value="50000" min="0" max="60" step="0.1" type="range" /> -->
-  </div>
+  <mat-slider min="0" [max]="video_duration" [step]="seek_steps">
+    <input
+      matSliderStartThumb
+      #start_range
+      (change)="forward(start_range.value)"
+    />
+    <input matSliderEndThumb #end_range (change)="backward(end_range.value)" />
+  </mat-slider>
+</div>
