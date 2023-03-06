@@ -1,11 +1,9 @@
 <app-shell>
-  <!-- <progress
-    *ngIf="ffmpeg.progress < 100"
-    id="file"
-    [value]="ffmpeg.progress"
-    max="100"
-  ></progress> -->
   <app-video-player> </app-video-player>
+  <mat-progress-bar
+    mode="determinate"
+    [value]="ffmpeg.progress"
+  ></mat-progress-bar>
 </app-shell>
 <!-- <div class="video_container"> -->
 <!--  (wheel)="seekVideo($event)" -->

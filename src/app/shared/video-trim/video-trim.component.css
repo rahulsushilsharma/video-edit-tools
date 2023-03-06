@@ -5,3 +5,27 @@ mat-slider {
     display: block;
 
 }
+
+table {
+    border-collapse: collapse;
+}
+
+td,
+th {
+    border: 1px solid #dddddd;
+    width: 248px;
+    padding: 5px;
+
+}
+
+.meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1em;
+}
+
+canvas {
+    outline: wheat 3px solid;
+    width: 248px;
+    height: 160px;
+}

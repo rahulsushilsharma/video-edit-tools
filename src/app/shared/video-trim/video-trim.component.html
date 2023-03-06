@@ -8,3 +8,36 @@
     <input matSliderEndThumb #end_range (change)="backward(end_range.value)" />
   </mat-slider>
 </div>
+<div class="meta">
+  <canvas #start_thumb></canvas>
+  <canvas #end_thumb></canvas>
+
+  <table>
+    <tr>
+      <td>Start Clip</td>
+      <td>{{ clip_data.start_clip }}</td>
+    </tr>
+    <tr>
+      <td>End Clip</td>
+      <td>{{ clip_data.end_clip }}</td>
+    </tr>
+    <tr>
+      <td>Length</td>
+      <td>{{ clip_data.length }}</td>
+    </tr>
+  </table>
+</div>
+
+<button mat-raised-button color="primary" (click)="trim()">trim</button>
+
+<video
+  id="my-video"
+  class="video-js"
+  controls
+  preload="auto"
+  #video_player
+  controls
+  width="620px"
+  height="480px"
+  [src]="out_video"
+></video>
