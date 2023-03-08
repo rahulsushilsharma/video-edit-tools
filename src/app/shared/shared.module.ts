@@ -7,8 +7,9 @@ import { ShellComponent } from './shell/shell.component';
 import { VideoTrimComponent } from './video-trim/video-trim.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
-const components: any = [ShellComponent,VideoTrimComponent];
+const components: any = [ShellComponent,VideoTrimComponent,SidebarComponent];
 
 const modules = [
   CommonModule,

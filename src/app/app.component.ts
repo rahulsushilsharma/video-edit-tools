@@ -6,6 +6,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { VideoPlayerComponent } from './video-player/video-player.component';
 import { LoadVideoService } from './services/load-video.service';
 import { LoadFfmpegService } from './services/load-ffmpeg.service';
+import { UiControlsService } from './services/ui-controls.service';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +32,8 @@ export class AppComponent {
   constructor(
     private domSanitizer: DomSanitizer,
     public loadVideo: LoadVideoService,
-    public ffmpeg: LoadFfmpegService
+    public ffmpeg: LoadFfmpegService,
+    public UiControls: UiControlsService
   ) {}
 
   async loadFfmpeg() {
