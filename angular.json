@@ -28,15 +28,18 @@
               "@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "@ffmpeg/ffmpeg"
+           ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "5mb",
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",

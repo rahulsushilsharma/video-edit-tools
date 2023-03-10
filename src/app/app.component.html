@@ -1,10 +1,12 @@
-<app-sidebar ></app-sidebar>
-<app-video-player> </app-video-player>
-<mat-progress-bar
-  mode="determinate"
-  [value]="ffmpeg.progress"
-></mat-progress-bar>
-<app-video-trim *ngIf="UiControls.TrimComponentViewToggle"></app-video-trim>
+<app-sidebar></app-sidebar>
+<div class="main">
+  <app-video-player> </app-video-player>
+  <mat-progress-bar
+    mode="determinate"
+    [value]="ffmpeg.progress"
+  ></mat-progress-bar>
+  <app-video-trim *ngIf="UiControls.TrimComponentViewToggle"></app-video-trim>
+</div>
 
 <!-- <div class="video_container"> -->
 <!--  (wheel)="seekVideo($event)" -->

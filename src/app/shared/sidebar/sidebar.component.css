@@ -1,6 +1,6 @@
 .nav__cont {
     position: fixed;
-    width: 60px;
+    width: 61px;
     top: 0;
     height: 100vh;
     z-index: 100;
@@ -24,6 +24,26 @@
     border-radius: 0 5px 5px 0;
     left: 60px;
     border-left: 1px #101010 solid;
+}
+
+.cover {
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    height: 100vh;
+    z-index: 97;
+    background-color: #202020;
+    overflow: hidden;
+    transition: width 0.3s ease;
+    box-shadow: 4px 7px 10px rgba(0, 0, 0, .4);
+    border-radius: 0 5px 5px 0;
+    left: 60px;
+    border-left: 1px #101010 solid;
+    opacity: 0.7;
+}
+
+.hide{
+    display: none;
 }
 
 .expand{
