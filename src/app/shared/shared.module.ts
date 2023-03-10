@@ -8,8 +8,9 @@ import { VideoTrimComponent } from './video-trim/video-trim.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ExtractAudioComponent } from './extract-audio/extract-audio.component';
 
-const components: any = [ShellComponent,VideoTrimComponent,SidebarComponent];
+const components: any = [ShellComponent,VideoTrimComponent,SidebarComponent,ExtractAudioComponent];
 
 const modules = [
   CommonModule,
@@ -18,6 +19,7 @@ const modules = [
   MatProgressBarModule,
   MatSidenavModule,
   MatButtonModule,
+
 ];
 
 @NgModule({
