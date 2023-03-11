@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { createFFmpeg } from '@ffmpeg/ffmpeg';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoadFfmpegService {
   ffmpeg = createFFmpeg();
-  progress!: number
-  constructor() { 
+  progress!: number;
+  log = ''
+  constructor() {
     this.ffmpeg.load();
     this.ffmpeg.setProgress(({ ratio }) => {
       console.log(ratio);
@@ -17,8 +18,8 @@ export class LoadFfmpegService {
        */
     });
     this.ffmpeg.setLogger(({ type, message }) => {
-      console.log(type, message);
-
+      if (type == 'ffout') this.log+=message+'\n';
+      else console.log(type, message);
 
       /*
        * type can be one of following:
@@ -28,7 +29,10 @@ export class LoadFfmpegService {
        * ffout: ffmpeg native stdout output
        */
     });
+    
   }
-
-
+  async run(cmd:string){
+    let args = cmd.split(' ')
+    await this.ffmpeg.run(...args)
+  }
 }

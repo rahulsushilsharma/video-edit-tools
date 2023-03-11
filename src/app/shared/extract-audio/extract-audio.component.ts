@@ -49,17 +49,42 @@ export class ExtractAudioComponent implements AfterViewInit {
     console.log('write file completed', end - start);
 
     this.ffmpeg.ffmpeg.FS('mkdir', '/out');
-
-    start = new Date().getTime();
-    await this.ffmpeg.ffmpeg.run(
-      '-i',
-      'test.mp4',
-      '-q:a',
-      '0',
-      '-map',
-      'a',
-      'out/extract_audio.mp3'
-    );
+    await this.ffmpeg.run('-i test.mp4 -q:a 0 -map a out/extract_audio.mp3')
+    console.log(this.ffmpeg.log);
+    
+    // start = new Date().getTime();
+    // '-i',
+    //   'test.mp4',
+    //   '-q:a',
+    //   '0',
+    //   '-map',
+    //   'a',
+    //   'out/extract_audio.mp3'
+    // await this.ffmpeg.ffmpeg.run(
+    //   '-h',
+    //   'encoder=h264'
+    // );
+    // console.log(this.ffmpeg.log);
+    // await this.ffmpeg.ffmpeg.run(
+    //   '-version'
+    // );
+    // console.log(this.ffmpeg.log);
+    // await this.ffmpeg.ffmpeg.run(
+    //   '-buildconf'
+    // );
+    // console.log(this.ffmpeg.log);
+    // await this.ffmpeg.ffmpeg.run(
+    //   '-formats'
+    // );
+    // console.log(this.ffmpeg.log);
+    // await this.ffmpeg.ffmpeg.run(
+    //   '-muxers'
+    // );
+    // console.log(this.ffmpeg.log);
+    
+    // -f dshow -i video="screen-capture-recorder" 
+    // -y -f vfwcap -i list
+    // -video_size 1024x768 -framerate 25 -f x11grab -i :0.0+100,200 output.mp4
     end = new Date().getTime();
     console.log('image extracted old file file completed', end - start);
 
@@ -79,7 +104,7 @@ export class ExtractAudioComponent implements AfterViewInit {
     var downloadURL = window.URL.createObjectURL(data);
     var link = document.createElement('a');
     link.href = downloadURL;
-    link.download = 'audio.mp3';
+    link.download = '1output.mp4';
     link.click();
   }
 }
