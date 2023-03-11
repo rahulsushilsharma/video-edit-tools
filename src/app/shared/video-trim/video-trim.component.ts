@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { LoadVideoService } from '../../services/load-video.service';
 import { LoadFfmpegService } from '../../services/load-ffmpeg.service';
-import { fetchFile } from '@ffmpeg/ffmpeg';
+// import { fetchFile } from '@ffmpeg/ffmpeg';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
@@ -66,20 +66,7 @@ export class VideoTrimComponent implements AfterViewInit {
     ctx.drawImage(this.videoPlayer.video, 0, 0, canvas.width, canvas.height);
   }
   async trim() {
-    this.file = await fetchFile(this.videoPlayer.videoBlob);
     let start = new Date().getTime();
-    this.ffmpeg.ffmpeg.FS('writeFile', 'test.mp4', this.file);
-    let end = new Date().getTime();
-    console.log('write file completed', end - start);
-
-    // start  = new Date().getTime()
-    // await ffmpeg.run('-i', 'test.mp4', '-vf', `fps=23`, `out/out%d.png`);
-    // end  = new Date().getTime()
-    // console.log('compress file completed' ,end - start);
-
-    this.ffmpeg.ffmpeg.FS('mkdir', '/out');
-
-    start = new Date().getTime();
     await this.ffmpeg.ffmpeg.run(
       '-i',
       'test.mp4',
@@ -93,13 +80,8 @@ export class VideoTrimComponent implements AfterViewInit {
       'aac',
       `out/output2.mp4`
     );
-    end = new Date().getTime();
-    console.log('image extracted old file file completed', end - start);
-
-    // start  = new Date().getTime()
-    // await ffmpeg.run('-i', 'test.mp4', `out/out%d.png`);
-    // end  = new Date().getTime()
-    // console.log('image extracted old file file completed' ,end - start);
+    let end = new Date().getTime();
+    console.log('time used :: ', end - start);
 
     const da = this.ffmpeg.ffmpeg.FS('readFile', 'out/output2.mp4');
     let video = new Blob([da]);
@@ -125,12 +107,5 @@ export class VideoTrimComponent implements AfterViewInit {
     link.href = downloadURL;
     link.download = 'trim.mp4';
     link.click();
-
-    // let blob = new Blob([data], { type: type});
-    // let url = window.URL.createObjectURL(blob);
-    // let pwa = window.open(url);
-    // if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
-    //     alert( 'Please disable your Pop-up blocker and try again.');
-    // }
   }
 }

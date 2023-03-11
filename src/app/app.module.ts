@@ -12,12 +12,14 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VideoPlayerComponent } from './video-player/video-player.component';
 import { SharedModule } from './shared/shared.module';
+import { InitialPageComponent } from './initial-page/initial-page.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     VideoPlayerComponent,
+    InitialPageComponent,
   ],
   imports: [
     BrowserModule,

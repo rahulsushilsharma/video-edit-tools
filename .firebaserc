@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "yt-project0": {
+      "hosting": {
+        "yt_fe": [
+          "yt-project0"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "yt-project0"
+  }
+}
