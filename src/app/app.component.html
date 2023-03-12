@@ -3,6 +3,7 @@
   <div class="main">
     <app-video-player> </app-video-player>
     <mat-progress-bar
+    *ngIf="ffmpeg.progress"
       mode="determinate"
       [value]="ffmpeg.progress"
     ></mat-progress-bar>

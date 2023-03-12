@@ -70,4 +70,16 @@ export class VideoPlayerComponent implements AfterViewInit{
     let file = await fetchFile(files[0]);
     this.ffmpeg.ffmpeg.FS('writeFile', 'test.mp4', file);
   }
+  async onFileSelected(event: any) {
+    const file = event.target.files[0];
+    this.video = this.domSanitizer.bypassSecurityTrustUrl(
+      URL.createObjectURL(file)
+    );
+    this.ShowPlayer = true
+
+    console.log(this.video_player);
+    this.loadVideo.video = this.video_player.nativeElement;
+    let file1 = await fetchFile(file);
+    this.ffmpeg.ffmpeg.FS('writeFile', 'test.mp4', file1);
+  }
 }

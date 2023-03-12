@@ -9,6 +9,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ExtractAudioComponent } from './extract-audio/extract-audio.component';
+import { ProcessingComponent } from './processing/processing.component';
 
 const components: any = [ShellComponent,VideoTrimComponent,SidebarComponent,ExtractAudioComponent];
 
@@ -23,7 +24,7 @@ const modules = [
 ];
 
 @NgModule({
-  declarations: [...components],
+  declarations: [...components, ProcessingComponent],
   imports: [...modules],
   exports: [...components, ...modules],
 })

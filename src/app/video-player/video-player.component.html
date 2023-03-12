@@ -1,6 +1,10 @@
-
-<div [hidden]="!ShowPlayer" >
-  <div class="video_container" >
+<div [hidden]="!ShowPlayer">
+  <mat-progress-bar
+    *ngIf="loadVideo.VideoDownloadProgress"
+    mode="determinate"
+    [value]="loadVideo.VideoDownloadProgress"
+  ></mat-progress-bar>
+  <div class="video_container">
     <video
       id="my-video"
       class="video-js"
@@ -15,23 +19,24 @@
   </div>
 </div>
 
-<div *ngIf="!ShowPlayer" class="drop-zone"
-     (drop)="onDrop($event)"
-     (dragover)="onDragOver($event)"
-     (dragleave)="onDragLeave($event)"
-     [class.drag-over]="isDragOver">
+<div
+  *ngIf="!ShowPlayer"
+  class="drop-zone"
+  (drop)="onDrop($event)"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)"
+  [class.drag-over]="isDragOver"
+>
   Drop your files here
-  
+</div>
+<div *ngIf="!ShowPlayer" class="file-input-wrapper">
+  <input
+    type="file"
+    id="my-file-input"
+    (change)="onFileSelected($event)"
+    class="file-input"
+  />
+  <span class="file-name"></span>
 </div>
 <!-- in -->
 <!-- <input type="file" class="custom-file-input" /> -->
-
-<div class="file-input-wrapper">
-  <input type="file" id="my-file-input" class="file-input">
-  <span class="file-name"></span>
-</div>
-
-<mat-progress-bar
-  mode="determinate"
-  [value]="loadVideo.VideoDownloadProgress"
-></mat-progress-bar>
