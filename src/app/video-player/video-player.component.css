@@ -1,7 +1,72 @@
-.video_container{
-    width: fit-content;
-    margin: 0 auto;
+.video_container {
+  width: fit-content;
+  margin: 0 auto;
 }
-video{
-    height: fit-content;
+
+video {
+  height: fit-content;
+}
+
+.drop-zone {
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  color: #aaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.drop-zone.drag-over {
+  border-color: #2196f3;
+  color: #2196f3;
+}
+
+
+/* Apply Material design appearance to file input */
+input[type="file"] {
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #757575;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+input[type="file"]:focus {
+  outline: none;
+}
+
+input[type="file"]:hover {
+  background-color: #f5f5f5;
+}
+
+input[type="file"]:active {
+  background-color: #e0e0e0;
+}
+
+/* Apply Material design text appearance to selected filename */
+span.file-name {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #757575;
+}
+
+/* Show selected filename next to input */
+input[type="file"].has-file + span.file-name {
+  display: inline-block;
+}
+
+input[type="file"].has-file {
+  background-color: #f5f5f5;
 }
