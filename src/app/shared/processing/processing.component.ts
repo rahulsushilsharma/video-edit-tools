@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoadFfmpegService } from '../../services/load-ffmpeg.service';
 
 @Component({
   selector: 'app-processing',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./processing.component.css']
 })
 export class ProcessingComponent {
-
+  constructor(public ffmpeg:LoadFfmpegService){}
 }

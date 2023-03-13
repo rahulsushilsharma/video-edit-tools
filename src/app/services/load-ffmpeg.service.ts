@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createFFmpeg } from '@ffmpeg/ffmpeg';
+import { UiControlsService } from '.././services/ui-controls.service';
 
 @Injectable({
   providedIn: 'root',
@@ -7,19 +8,22 @@ import { createFFmpeg } from '@ffmpeg/ffmpeg';
 export class LoadFfmpegService {
   ffmpeg = createFFmpeg();
   progress!: number;
-  loaded = false
+  loaded = false;
   log = {
     info: '',
     fferr: '',
     ffout: '',
   };
-  constructor() {}
+  constructor(public UiControls: UiControlsService) {}
 
   async load() {
     await this.ffmpeg.load();
     this.ffmpeg.setProgress(({ ratio }) => {
       this.progress = ratio * 100;
       console.log(this.progress);
+      if (this.progress > 0 && this.progress < 100)
+        this.UiControls.ProgressComponentViewToggle = true;
+      else this.UiControls.ProgressComponentViewToggle = false;
 
       /*
        * ratio is a float number between 0 to 1.
@@ -39,7 +43,7 @@ export class LoadFfmpegService {
        */
     });
     this.ffmpeg.FS('mkdir', '/out');
-    this.loaded = true
+    this.loaded = true;
   }
 
   async run(cmd: string) {

@@ -5,13 +5,20 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ShellComponent } from './shell/shell.component';
 import { VideoTrimComponent } from './video-trim/video-trim.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatButtonModule} from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ExtractAudioComponent } from './extract-audio/extract-audio.component';
 import { ProcessingComponent } from './processing/processing.component';
+import {MatCardModule} from '@angular/material/card';
 
-const components: any = [ShellComponent,VideoTrimComponent,SidebarComponent,ExtractAudioComponent];
+const components: any = [
+  ShellComponent,
+  VideoTrimComponent,
+  SidebarComponent,
+  ExtractAudioComponent,
+  ProcessingComponent,
+];
 
 const modules = [
   CommonModule,
@@ -20,11 +27,11 @@ const modules = [
   MatProgressBarModule,
   MatSidenavModule,
   MatButtonModule,
-
+  MatCardModule,
 ];
 
 @NgModule({
-  declarations: [...components, ProcessingComponent],
+  declarations: [...components],
   imports: [...modules],
   exports: [...components, ...modules],
 })
