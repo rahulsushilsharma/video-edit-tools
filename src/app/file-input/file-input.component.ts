@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LoadVideoService } from '.././services/load-video.service';
+import { UiControlsService } from '.././services/ui-controls.service';
 @Component({
   selector: 'app-file-input',
   templateUrl: './file-input.component.html',
@@ -8,14 +9,20 @@ import { LoadVideoService } from '.././services/load-video.service';
 export class FileInputComponent {
   isDragOver = false;
   ShowPlayer = false;
-  constructor(public loadVideo :LoadVideoService){}
+  constructor(
+    public loadVideo: LoadVideoService,
+    public uiControls: UiControlsService
+  ) {}
 
   onDrop(event: DragEvent) {
     event.preventDefault();
     const files = event.dataTransfer!.files;
     // this.handleFileUpload(files);
-    this.loadVideo.video = files
+    this.loadVideo.videoBlob = files;
     this.isDragOver = false;
+    this.uiControls.FileInputComponentViewToggle = false
+    console.log('fdafasfa',this.uiControls.FileInputComponentViewToggle);
+    
   }
 
   onDragOver(event: DragEvent) {
@@ -44,7 +51,9 @@ export class FileInputComponent {
   // }
   async onFileSelected(event: any) {
     // const file = event.target.files[0];
-    this.loadVideo.video = event.target.files
+    this.loadVideo.videoBlob = event.target.files;
+    this.uiControls.FileInputComponentViewToggle = false
+
 
     // this.video = this.domSanitizer.bypassSecurityTrustUrl(
     //   URL.createObjectURL(file)

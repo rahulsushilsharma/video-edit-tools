@@ -31,7 +31,9 @@ export class VideoPlayerComponent implements AfterViewInit{
 
   async updateVideo() {
     await this.ffmpeg.load()
-
+    this.video = this.domSanitizer.bypassSecurityTrustUrl(
+      URL.createObjectURL(this.loadVideo.videoBlob)
+    );
     // let blob = await this.loadVideo.downloadVideo(
     //   'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4'
     // );
@@ -39,47 +41,47 @@ export class VideoPlayerComponent implements AfterViewInit{
   }
   isDragOver = false;
 
-  onDrop(event: DragEvent) {
-    event.preventDefault();
-    const files = event.dataTransfer!.files;
-    this.handleFileUpload(files);
-    this.isDragOver = false;
-  }
+  // onDrop(event: DragEvent) {
+  //   event.preventDefault();
+  //   const files = event.dataTransfer!.files;
+  //   this.handleFileUpload(files);
+  //   this.isDragOver = false;
+  // }
 
-  onDragOver(event: DragEvent) {
-    event.preventDefault();
-    this.isDragOver = true;
-  }
+  // onDragOver(event: DragEvent) {
+  //   event.preventDefault();
+  //   this.isDragOver = true;
+  // }
 
-  onDragLeave(event: DragEvent) {
-    event.preventDefault();
-    this.isDragOver = false;
-  }
+  // onDragLeave(event: DragEvent) {
+  //   event.preventDefault();
+  //   this.isDragOver = false;
+  // }
 
-  async handleFileUpload(files: FileList) {
-    // handle file upload logic
-    console.log(files[0]);
+  // async handleFileUpload(files: FileList) {
+  //   // handle file upload logic
+  //   console.log(files[0]);
     
-    this.video = this.domSanitizer.bypassSecurityTrustUrl(
-      URL.createObjectURL(files[0])
-    );
-    this.ShowPlayer = true
+  //   this.video = this.domSanitizer.bypassSecurityTrustUrl(
+  //     URL.createObjectURL(files[0])
+  //   );
+  //   this.ShowPlayer = true
 
-    console.log(this.video_player);
-    this.loadVideo.video = this.video_player.nativeElement;
-    let file = await fetchFile(files[0]);
-    this.ffmpeg.ffmpeg.FS('writeFile', 'test.mp4', file);
-  }
-  async onFileSelected(event: any) {
-    const file = event.target.files[0];
-    this.video = this.domSanitizer.bypassSecurityTrustUrl(
-      URL.createObjectURL(file)
-    );
-    this.ShowPlayer = true
+  //   console.log(this.video_player);
+  //   this.loadVideo.video = this.video_player.nativeElement;
+  //   let file = await fetchFile(files[0]);
+  //   this.ffmpeg.ffmpeg.FS('writeFile', 'test.mp4', file);
+  // }
+  // async onFileSelected(event: any) {
+  //   const file = event.target.files[0];
+    // this.video = this.domSanitizer.bypassSecurityTrustUrl(
+    //   URL.createObjectURL(file)
+    // );
+    // this.ShowPlayer = true
 
-    console.log(this.video_player);
-    this.loadVideo.video = this.video_player.nativeElement;
-    let file1 = await fetchFile(file);
-    this.ffmpeg.ffmpeg.FS('writeFile', 'test.mp4', file1);
-  }
+  //   console.log(this.video_player);
+  //   this.loadVideo.video = this.video_player.nativeElement;
+  //   let file1 = await fetchFile(file);
+  //   this.ffmpeg.ffmpeg.FS('writeFile', 'test.mp4', file1);
+  // }
 }

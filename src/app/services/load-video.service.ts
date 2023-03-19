@@ -5,7 +5,7 @@ import { Injectable, ViewChild } from '@angular/core';
 })
 export class LoadVideoService {
   VideoDownloadProgress!: number;
-  videoBlob!: Blob;
+  videoBlob!: any;
   video: any;
 
   constructor() {}

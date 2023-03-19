@@ -1,15 +1,21 @@
 <div>
   <app-sidebar></app-sidebar>
   <div class="main">
-    <app-video-player> </app-video-player>
-    
+    <app-video-player *ngIf="!UiControls.FileInputComponentViewToggle" > </app-video-player>
+
     <app-video-trim *ngIf="UiControls.TrimComponentViewToggle"></app-video-trim>
     <!-- <app-extract-audio></app-extract-audio> -->
-<app-processing *ngIf="UiControls.ProgressComponentViewToggle" ></app-processing>
-
+    <app-processing
+      *ngIf="UiControls.ProgressComponentViewToggle"
+    ></app-processing>
   </div>
 </div>
-<app-initial-page *ngIf="!ffmpeg.loaded"></app-initial-page>
+<!-- <app-initial-page *ngIf="!ffmpeg.loaded"></app-initial-page> -->
+<app-file-input
+  *ngIf="UiControls.FileInputComponentViewToggle"
+></app-file-input>
+
+
 <!-- <div class="video_container"> -->
 <!--  (wheel)="seekVideo($event)" -->
 <!-- <div class="seek-container">
