@@ -1,0 +1,24 @@
+<div class="container">
+  <p>file-input works!</p>
+
+  <div
+    class="drop-zone"
+    (drop)="onDrop($event)"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    [class.drag-over]="isDragOver"
+  >
+    Drop your files here
+  </div>
+  <div class="file-input-wrapper">
+    <input
+      type="file"
+      id="my-file-input"
+      (change)="onFileSelected($event)"
+      class="file-input"
+    />
+    <span class="file-name"></span>
+  </div>
+</div>
+<!-- in -->
+<!-- <input type="file" class="custom-file-input" /> -->
