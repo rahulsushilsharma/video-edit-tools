@@ -1,0 +1,13 @@
+<mat-drawer-container autosize>
+  <mat-drawer #drawer mode="push">
+    <button mat-raised-button color="primary" (click)="trim()">trim</button>
+  </mat-drawer>
+
+  <div>
+    <button type="button" mat-button (click)="drawer.toggle()">
+      Toggle sidenav
+    </button>
+    <ng-content></ng-content>
+
+  </div>
+</mat-drawer-container>

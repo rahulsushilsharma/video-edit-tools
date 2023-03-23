@@ -1,0 +1,31 @@
+<div class="trim_slider">
+  <mat-slider min="0" [max]="video_duration" [step]="seek_steps">
+    <input
+      matSliderStartThumb
+      #start_range
+      (change)="forward(start_range.value)"
+    />
+    <input matSliderEndThumb #end_range (change)="backward(end_range.value)" />
+  </mat-slider>
+</div>
+<div class="meta">
+  <div><p>Start Thumb</p><canvas #start_thumb></canvas></div>
+  <div><p>End Thumb</p><canvas #end_thumb></canvas></div>
+
+  <table>
+    <tr>
+      <td>Start Clip</td>
+      <td>{{ clip_data.start_clip }}</td>
+    </tr>
+    <tr>
+      <td>End Clip</td>
+      <td>{{ clip_data.end_clip }}</td>
+    </tr>
+    <tr>
+      <td>Length</td>
+      <td>{{ clip_data.length }}</td>
+    </tr>
+  </table>
+</div>
+
+<button mat-raised-button color="primary" (click)="trim()">trim</button>

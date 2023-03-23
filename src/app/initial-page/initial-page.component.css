@@ -1,0 +1,15 @@
+div{
+    width: 100vw;
+    height: 100vh;
+    background-color: blueviolet;
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+}
+h2{
+    text-align: center;
+    color: wheat;
+    display: block;
+    margin: 50vh auto;
+
+}

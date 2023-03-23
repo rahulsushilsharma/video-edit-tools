@@ -1,26 +1,25 @@
-<progress
-  *ngIf="progress < 100"
-  id="file"
-  [value]="progress"
-  max="100"
-></progress>
-<div (wheel)="seekVideo($event)" class="video_container">
-  <div>
-    <video
-      id="my-video"
-      class="video-js"
-      controls
-      preload="auto"
-      #video_player
-      controls
-      [src]="video"
-    ></video>
+<div>
+  <app-sidebar></app-sidebar>
+  <div class="main">
+    <app-video-player> </app-video-player>
+    
+    <app-video-trim *ngIf="UiControls.TrimComponentViewToggle"></app-video-trim>
+    <!-- <app-extract-audio></app-extract-audio> -->
+<app-processing *ngIf="UiControls.ProgressComponentViewToggle" ></app-processing>
+
   </div>
-  <div class="trim_slider">
-    <input #start_range (change)="range(start_range.value)" value="500" min="0" max="60" step="0.1" type="range" />
-    <input #end_range (change)="range(end_range.value)" value="50000" min="0" max="60" step="0.1" type="range" />
-  </div>
-  <div class="seek-container">
+<app-file-input *ngIf="!UiControls.FileInputComponentViewToggle" >
+  
+</app-file-input>
+
+  
+</div>
+
+
+<!-- <app-initial-page *ngIf="!ffmpeg.loaded"></app-initial-page> -->
+<!-- <div class="video_container"> -->
+<!--  (wheel)="seekVideo($event)" -->
+<!-- <div class="seek-container">
     <div id="el1">el1</div>
 
     <div #seek class="con">
@@ -34,7 +33,7 @@
     </div>
   </div>
 </div>
-
+<mat-slide-toggle>Toggle me!</mat-slide-toggle>
 <button (click)="captureThumb()">Capture</button>
 
-<div #output class="con"></div>
+<div #output class="con"></div> -->
