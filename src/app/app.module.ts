@@ -19,7 +19,6 @@ import { FileInputComponent } from './file-input/file-input.component';
   declarations: [
     AppComponent,
     VideoPlayerComponent,
-    InitialPageComponent,
     FileInputComponent,
   ],
   imports: [
