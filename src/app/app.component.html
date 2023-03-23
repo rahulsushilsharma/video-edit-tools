@@ -8,7 +8,9 @@
 <app-processing *ngIf="UiControls.ProgressComponentViewToggle" ></app-processing>
 
   </div>
-<app-file-input ></app-file-input>
+<app-file-input *ngIf="!UiControls.FileInputComponentViewToggle" >
+  
+</app-file-input>
 
   
 </div>

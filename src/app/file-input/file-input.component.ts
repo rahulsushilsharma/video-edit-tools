@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { LoadFfmpegService } from '.././services/load-ffmpeg.service';
 import { LoadVideoService } from '.././services/load-video.service';
 import { fetchFile } from '@ffmpeg/ffmpeg';
+import { UiControlsService } from '../services/ui-controls.service';
 
 @Component({
   selector: 'app-file-input',
@@ -13,7 +14,8 @@ export class FileInputComponent {
   constructor(
     public ffmpeg: LoadFfmpegService,
     public loadVideo: LoadVideoService,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    public UiControls :UiControlsService
   ) {}
   async updateVideo() {
     await this.ffmpeg.load();
@@ -48,6 +50,9 @@ export class FileInputComponent {
     await this.ffmpeg.load();
     let file = await fetchFile(files[0]);
     this.ffmpeg.ffmpeg.FS('writeFile', 'test.mp4', file);
+    this.UiControls.FileInputComponentViewToggle = true
+
+
   }
 
   async onFileSelected(event: any) {
@@ -58,5 +63,6 @@ export class FileInputComponent {
     await this.ffmpeg.load();
     let file1 = await fetchFile(file);
     this.ffmpeg.ffmpeg.FS('writeFile', 'test.mp4', file1);
+    this.UiControls.FileInputComponentViewToggle = true
   }
 }
