@@ -63,4 +63,26 @@ export class LoadFfmpegService {
     else return [] as string[];
 
   }
+  exploreDirectory(path: string) {
+    // list the contents of the directory
+    const entries = this.ffmpeg.FS('readdir', path);
+    console.log(entries);
+    
+    // iterate over the entries
+    for (const entry of entries) {
+      // print the name and type of the entry
+      if(entry ==='null')continue
+      const name = entry
+      let type = ''
+      if(entry.split('.').length>=2)type = 'file';
+      else type = 'directory'
+
+      console.log(`${name} (${type})`);
+  
+      // recursively explore subdirectories
+      if (type === "directory") {
+        this.exploreDirectory(`${path}/${name}`);
+      }
+    }
+  }
 }
