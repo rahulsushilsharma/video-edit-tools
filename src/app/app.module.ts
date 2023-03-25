@@ -14,12 +14,14 @@ import { VideoPlayerComponent } from './video-player/video-player.component';
 import { SharedModule } from './shared/shared.module';
 import { InitialPageComponent } from './initial-page/initial-page.component';
 import { FileInputComponent } from './file-input/file-input.component';
+import { FileSystemComponent } from './file-system/file-system.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VideoPlayerComponent,
     FileInputComponent,
+    FileSystemComponent,
   ],
   imports: [
     BrowserModule,

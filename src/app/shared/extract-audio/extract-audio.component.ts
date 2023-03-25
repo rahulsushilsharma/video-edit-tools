@@ -44,7 +44,7 @@ export class ExtractAudioComponent implements AfterViewInit {
     
     let start = new Date().getTime();
     
-    await this.ffmpeg.run('-i test.mp4 -q:a 0 -map a out/extract_audio.mp3')
+    await this.ffmpeg.runCommand('-i test.mp4 -q:a 0 -map a out/extract_audio.mp3')
     console.log(this.ffmpeg.log);
     let end = new Date().getTime();
     console.log('time used :: ', end - start);

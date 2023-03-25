@@ -15,7 +15,7 @@ export class FileInputComponent {
     public ffmpeg: LoadFfmpegService,
     public loadVideo: LoadVideoService,
     private domSanitizer: DomSanitizer,
-    public UiControls :UiControlsService
+    public UiControls: UiControlsService
   ) {}
   async updateVideo() {
     await this.ffmpeg.load();
@@ -42,7 +42,7 @@ export class FileInputComponent {
     event.preventDefault();
     this.isDragOver = false;
   }
- 
+
   async handleFileUpload(files: FileList): Promise<void> {
     this.loadVideo.videoBlobUrl = this.domSanitizer.bypassSecurityTrustUrl(
       URL.createObjectURL(files[0])
@@ -50,9 +50,7 @@ export class FileInputComponent {
     await this.ffmpeg.load();
     let file = await fetchFile(files[0]);
     this.ffmpeg.ffmpeg.FS('writeFile', 'test.mp4', file);
-    this.UiControls.FileInputComponentViewToggle = true
-
-
+    this.UiControls.FileInputComponentViewToggle = true;
   }
 
   async onFileSelected(event: any) {
@@ -63,6 +61,6 @@ export class FileInputComponent {
     await this.ffmpeg.load();
     let file1 = await fetchFile(file);
     this.ffmpeg.ffmpeg.FS('writeFile', 'test.mp4', file1);
-    this.UiControls.FileInputComponentViewToggle = true
+    this.UiControls.FileInputComponentViewToggle = true;
   }
 }

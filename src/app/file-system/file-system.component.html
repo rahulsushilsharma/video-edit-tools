@@ -1,0 +1,5 @@
+<p>file-system works!</p>
+<button (click)="readFiles('./')">get dir</button>
+<ol>
+    <li *ngFor="let dir of currentDir" (click)="readFiles(dir)" >{{dir}}</li>
+</ol>
