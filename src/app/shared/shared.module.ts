@@ -11,6 +11,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ExtractAudioComponent } from './extract-audio/extract-audio.component';
 import { ProcessingComponent } from './processing/processing.component';
 import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
+
 
 const components: any = [
   ShellComponent,
@@ -28,6 +30,7 @@ const modules = [
   MatSidenavModule,
   MatButtonModule,
   MatCardModule,
+  MatInputModule,
 ];
 
 @NgModule({
