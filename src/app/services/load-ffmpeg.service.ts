@@ -61,31 +61,77 @@ export class LoadFfmpegService {
   listDir(path: string) {
     if (this.ffmpeg.isLoaded()) return this.ffmpeg.FS('readdir', path);
     else return [] as string[];
+  }
+  getFileType(dir:string){
+    
+    if(dir.split('.').at(-1) =='mp4'){
+      return 'video'
+    }
+    return 'folder'
+  }
+  listDir_(path: string) {
+    let currentDir: {
+      path: string;
+      folderName: string;
+      type:string;
+    }[] = [];
+    try {
+      console.log(currentDir);
 
+      let newDir = this.listDir(path);
+
+      for (let dir of newDir) {
+        if (!['tmp', 'home', 'dev', 'proc'].includes(dir)) {
+          let data = 
+          currentDir.push({
+            path: `${path}/${dir}`,
+            folderName: dir,
+            type :this.getFileType(dir)
+          });
+        }
+      }
+    } catch {
+      currentDir = [
+        {
+          path: `./`,
+          folderName: '.',
+          type :this.getFileType('.')
+        },
+        {
+          path: `../`,
+          folderName: '..',
+          type :this.getFileType('..')
+        },
+      ];
+
+      console.log('path is not explorable');
+    }
+
+    return currentDir
   }
   exploreDirectory(path: string) {
     // list the contents of the directory
-    let entries
-    try{
-       entries = this.ffmpeg.FS('readdir', path)
-    }catch{
-      entries = ['.', '..']
+    let entries;
+    try {
+      entries = this.ffmpeg.FS('readdir', path);
+    } catch {
+      entries = ['.', '..'];
     }
     console.log(entries, path);
-    
+
     // iterate over the entries
     for (const entry of entries) {
       // print the name and type of the entry
-      if(entry ==='null')continue
-      const name = entry
-      let type = ''
-      if(entry.split('.').length>=2)type = 'file';
-      else type = 'directory'
+      if (entry === 'null') continue;
+      const name = entry;
+      let type = '';
+      if (entry.split('.').length >= 2) type = 'file';
+      else type = 'directory';
 
       console.log(`${name} (${type})`);
-  
+
       // recursively explore subdirectories
-      if (type === "directory") {
+      if (type === 'directory') {
         this.exploreDirectory(`${path}/${name}`);
       }
     }

@@ -16,7 +16,8 @@
     <div class="contents">
       <ul>
         <li *ngFor="let dir of currentDir" (click)="readFiles(dir.path)">
-          {{ dir.folderName }}
+            <img [src]="dir.icon" alt="">
+            <p>{{ dir.folderName }}</p>
         </li>
       </ul>
     </div>
