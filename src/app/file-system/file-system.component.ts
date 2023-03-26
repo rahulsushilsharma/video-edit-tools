@@ -20,6 +20,7 @@ export class FileSystemComponent implements AfterViewInit {
     image: '../../assets/image.svg',
     folder: '../../assets/folder.svg',
   };
+  showAddFile = false
   constructor(public ffmpeg: LoadFfmpegService) {}
   ngAfterViewInit(): void {
     // this.readFiles()
@@ -28,9 +29,13 @@ export class FileSystemComponent implements AfterViewInit {
 
   createFolder(value:any){
     console.log(value);
+    this.ffmpeg.createDir(value)
     
   }
-
+  toggleAddFile(){
+    if(this.showAddFile) this.showAddFile = false
+    else this.showAddFile = true
+  }
 
   initialRead() {
 

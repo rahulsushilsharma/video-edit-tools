@@ -8,27 +8,33 @@
   </ol>
 </div> -->
 <div class="file-explorer">
-  <div class="file-command">
-    <mat-form-field class="example-full-width">
-      <input matInput #message maxlength="31" placeholder="Folder Name" />
-      <mat-hint align="end">{{ message.value.length }} / 31</mat-hint>
-    </mat-form-field>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="createFolder(message.value)"
-    >
-      Create Folder
-    </button>
-  </div>
+  
   <h1>File Explorer</h1>
   <div class="explorer">
     <div class="path">
       <button mat-raised-button color="primary" (click)="initialRead()">
         Explore
       </button>
+      <button mat-icon-button color="primary" (click)="toggleAddFile()">
+        +
+      </button>
     </div>
     <div class="contents">
+      <div *ngIf="showAddFile" class="background">
+        <div class="file-command">
+          <mat-form-field class="example-full-width">
+            <input matInput #message maxlength="31" placeholder="Folder Name" />
+            <mat-hint align="end">{{ message.value.length }} / 31</mat-hint>
+          </mat-form-field>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="createFolder(message.value)"
+          >
+            Create Folder
+          </button>
+        </div>
+      </div>
       <ul>
         <li *ngFor="let dir of currentDir" (click)="readFiles(dir.path)">
           <img [src]="dir.icon" alt="" />
