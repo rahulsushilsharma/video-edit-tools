@@ -44,7 +44,10 @@
   
   .contents ul li:hover {
     cursor: pointer;
-    background-color: #eee;
+  }
+
+  .contents ul li:nth-child(even) {
+    background-color: #dddddd;
   }
 
   .contents ul li img{
@@ -54,4 +57,9 @@
   .contents ul li p{
     margin: 5px;
   }
-  
+  .file-command{
+  background-color: bisque;
+    display: grid;
+    padding: 1em;
+    border-radius: 1em;
+}

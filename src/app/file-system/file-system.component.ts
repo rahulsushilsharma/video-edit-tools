@@ -25,6 +25,13 @@ export class FileSystemComponent implements AfterViewInit {
     // this.readFiles()
   }
 
+
+  createFolder(value:any){
+    console.log(value);
+    
+  }
+
+
   initialRead() {
 
     let dirList = this.ffmpeg.listDir_('./');

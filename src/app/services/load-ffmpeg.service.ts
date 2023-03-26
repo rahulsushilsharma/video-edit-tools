@@ -136,4 +136,13 @@ export class LoadFfmpegService {
       }
     }
   }
+
+  createDir(dirName:string){
+    try {
+      this.ffmpeg.FS('mkdir',dirName)
+      return {status:'success',msg:'unable to make a dir'}
+    }catch{
+      return {status:'failure',msg:'unable to make a dir'}
+    }
+  }
 }
