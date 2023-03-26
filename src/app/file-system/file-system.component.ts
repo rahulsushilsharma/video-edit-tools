@@ -7,34 +7,54 @@ import { LoadFfmpegService } from '../services/load-ffmpeg.service';
   styleUrls: ['./file-system.component.css'],
 })
 export class FileSystemComponent implements AfterViewInit {
-  currentDir: string[] = [];
-  path: string = '';
-  lastDir: string = '';
+  currentDir = [{
+    'path':``,
+    'folderName':''
+  }];
   constructor(public ffmpeg: LoadFfmpegService) {}
   ngAfterViewInit(): void {
     // this.readFiles()
   }
 
-  readFiles(dir: string) {
-  //   if (dir == '../') {
-  //     let temp = this.path.split('/');
+  initialRead() {
+    let dirList = this.ffmpeg.listDir('./');
+    for(let dir of dirList){
+      this.currentDir.push({
+        'path':dir,
+        'folderName':dir
+      })
+    }
+  }
+  readFiles(path: string) {
+    this.currentDir = [{
+      'path':``,
+      'folderName':''
+    }];
+    try {
+      console.log(this.currentDir);
 
-  //     temp.pop();
+      let newDir = this.ffmpeg.listDir(path);
 
+      for (let dir of newDir) {
+        this.currentDir.push(
+          {
+            'path':`${path}/${dir}`,
+            'folderName':dir
+          }
+          );
+      }
+    } catch {
+      this.currentDir = [{
+        'path':`./`,
+        'folderName':'.'
+      },{
+        'path':`../`,
+        'folderName':'..'
+      }];
 
-  //     this.path = temp.join('/');
-  //     console.log(temp,this.path);
-
-  //     if (this.path == '.') this.path = './';
-  //     this.currentDir = this.ffmpeg.listDir(this.path);
-  //   } else {
-  //     this.path += dir;
-  //     if (this.path == '.') this.path = './';
-  //     this.currentDir = this.ffmpeg.listDir(this.path);
-  //   }
-
-  //   // console.log(this.path, dir);
-  // }
-  this.ffmpeg.exploreDirectory(dir)
+      console.log('path is not explorable');
+    } // console.log(this.path, dir);
+    // }
+    // this.ffmpeg.exploreDirectory(path);
   }
 }

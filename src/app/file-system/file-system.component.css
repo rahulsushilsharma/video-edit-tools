@@ -1,0 +1,45 @@
+.file-explorer {
+    margin: 20px;
+  }
+  
+  .file-explorer h1 {
+    margin-bottom: 10px;
+  }
+  
+  .explorer {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .path {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .path input {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+  
+  .contents {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 300px;
+    overflow-y: scroll;
+  }
+  
+  .contents ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .contents ul li {
+    margin-bottom: 5px;
+  }
+  
+  .contents ul li:hover {
+    cursor: pointer;
+    background-color: #eee;
+  }

@@ -1,5 +1,24 @@
-<p>file-system works!</p>
-<button (click)="readFiles('./')">get dir</button>
-<ol>
-    <li *ngFor="let dir of currentDir" >{{dir}}</li>
-</ol>
+<!-- <p>file-system works!</p>
+<div class="container">
+  <button >get dir</button>
+  <ol>
+    <li *ngFor="let dir of currentDir" (click)="readFiles(dir.path)">
+      {{ dir.folderName }}
+    </li>
+  </ol>
+</div> -->
+<div class="file-explorer">
+  <h1>File Explorer</h1>
+  <div class="explorer">
+    <div class="path">
+      <button (click)="initialRead()">Explore</button>
+    </div>
+    <div class="contents">
+      <ul>
+        <li *ngFor="let dir of currentDir" (click)="readFiles(dir.path)">
+          {{ dir.folderName }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

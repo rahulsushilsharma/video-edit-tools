@@ -65,8 +65,13 @@ export class LoadFfmpegService {
   }
   exploreDirectory(path: string) {
     // list the contents of the directory
-    const entries = this.ffmpeg.FS('readdir', path);
-    console.log(entries);
+    let entries
+    try{
+       entries = this.ffmpeg.FS('readdir', path)
+    }catch{
+      entries = ['.', '..']
+    }
+    console.log(entries, path);
     
     // iterate over the entries
     for (const entry of entries) {
