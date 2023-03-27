@@ -1,5 +1,6 @@
 mat-slider {
-    width: 90vw;
+    /* width: 90vw; */
+    width: auto;
     /* width: 90vw; */
     margin: 0 auto;
     display: block;
@@ -28,4 +29,8 @@ canvas {
     outline: wheat 3px solid;
     width: 248px;
     height: 160px;
+}
+.container{
+    width: 91%;
+    margin: 0 auto;
 }

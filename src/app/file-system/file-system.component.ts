@@ -20,47 +20,52 @@ export class FileSystemComponent implements AfterViewInit {
     image: '../../assets/image.svg',
     folder: '../../assets/folder.svg',
   };
-  showAddFile = false
+  showAddFile = false;
   constructor(public ffmpeg: LoadFfmpegService) {}
   ngAfterViewInit(): void {
     // this.readFiles()
   }
 
-
-  createFolder(value:any){
+  createFolder(value: any) {
     console.log(value);
-    this.ffmpeg.createDir(value)
-    
+    this.ffmpeg.createDir(value);
   }
-  toggleAddFile(){
-    if(this.showAddFile) this.showAddFile = false
-    else this.showAddFile = true
+  toggleAddFile() {
+    if (this.showAddFile) this.showAddFile = false;
+    else this.showAddFile = true;
   }
 
   initialRead() {
+    this.currentDir = [];
 
     let dirList = this.ffmpeg.listDir_('./');
     for (let dir of dirList) {
       if (!['tmp', 'home', 'dev', 'proc'].includes(dir.folderName)) {
-        
-        if(dir.type == 'video')this.currentDir.push({...dir,icon:this.assetList.video});
-        if(dir.type == 'audio')this.currentDir.push({...dir,icon:this.assetList.audio});
-        if(dir.type == 'image')this.currentDir.push({...dir,icon:this.assetList.image});
-        if(dir.type == 'folder')this.currentDir.push({...dir,icon:this.assetList.folder});
+        if (dir.type == 'video')
+          this.currentDir.push({ ...dir, icon: this.assetList.video });
+        if (dir.type == 'audio')
+          this.currentDir.push({ ...dir, icon: this.assetList.audio });
+        if (dir.type == 'image')
+          this.currentDir.push({ ...dir, icon: this.assetList.image });
+        if (dir.type == 'folder')
+          this.currentDir.push({ ...dir, icon: this.assetList.folder });
       }
     }
     console.log(this.currentDir);
   }
   readFiles(path: string) {
-    this.currentDir = []
-     let dirList = this.ffmpeg.listDir_(path);
+    this.currentDir = [];
+    let dirList = this.ffmpeg.listDir_(path);
     for (let dir of dirList) {
       if (!['tmp', 'home', 'dev', 'proc'].includes(dir.folderName)) {
-        
-        if(dir.type == 'video')this.currentDir.push({...dir,icon:this.assetList.video});
-        if(dir.type == 'audio')this.currentDir.push({...dir,icon:this.assetList.audio});
-        if(dir.type == 'image')this.currentDir.push({...dir,icon:this.assetList.image});
-        if(dir.type == 'folder')this.currentDir.push({...dir,icon:this.assetList.folder});
+        if (dir.type == 'video')
+          this.currentDir.push({ ...dir, icon: this.assetList.video });
+        if (dir.type == 'audio')
+          this.currentDir.push({ ...dir, icon: this.assetList.audio });
+        if (dir.type == 'image')
+          this.currentDir.push({ ...dir, icon: this.assetList.image });
+        if (dir.type == 'folder')
+          this.currentDir.push({ ...dir, icon: this.assetList.folder });
       }
     }
     console.log(this.currentDir);
