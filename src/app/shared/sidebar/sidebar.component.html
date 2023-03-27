@@ -2,7 +2,8 @@
 
 </nav>
 <div class="nav_main"  #navbar >
-    <button mat-raised-button color="primary" (click)="UiControls.TrimComponentViewToggle = true ">trim</button>
+    <button mat-raised-button color="primary" (click)="UiControls.TrimComponentViewToggle = !UiControls.TrimComponentViewToggle  ">trim</button>
+    <button mat-raised-button color="primary" (click)="UiControls.FileSystemComponentViewToggle = !UiControls.FileSystemComponentViewToggle ">Files</button>
 
 </div>
 
