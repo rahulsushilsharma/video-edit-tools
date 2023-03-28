@@ -44,7 +44,7 @@ export class ExtractAudioComponent implements AfterViewInit {
     
     let start = new Date().getTime();
     
-    await this.ffmpeg.runCommand('-i test.mp4 -filter_complex showwavespic=s=1920x1080 -frames:v 1 out/output.png')
+    await this.ffmpeg.runCommand('-i test.mp4 -filter_complex showwavespic=s=1920x108 -frames:v 1 out/output.png')
     // await this.ffmpeg.runCommand('-i test.mp4 -q:a 0 -map a out/extract_audio.mp3')
     console.log(this.ffmpeg.log);
     let end = new Date().getTime();
@@ -55,7 +55,8 @@ export class ExtractAudioComponent implements AfterViewInit {
     this.out_video = this.domSanitizer.bypassSecurityTrustUrl(
       URL.createObjectURL(video)
     );
-    this.downLoadFile(video);
+    this.videoPlayer.audioWaveformUrl = this.out_video
+    // this.downLoadFile(video);
   }
 
   /**

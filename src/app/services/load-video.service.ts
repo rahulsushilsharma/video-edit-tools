@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class LoadVideoService {
   videoBlobUrl: any;
   video : any
+  audioWaveformUrl:any
   
   // VideoDownloadProgress!: number;
   // videoBlob!: Blob;

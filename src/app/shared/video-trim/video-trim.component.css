@@ -34,3 +34,15 @@ canvas {
     width: 91%;
     margin: 0 auto;
 }
+
+.trim_slider img{
+    position: absolute;
+    /* width: `; */
+    z-index: -1;
+    top: 0;
+    left: 0;
+}
+
+.trim_slider{
+    position: relative;
+}

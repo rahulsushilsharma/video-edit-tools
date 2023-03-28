@@ -23,10 +23,12 @@
 }
 
 .contents {
+  position: relative;
   border: 1px solid #ccc;
   padding: 10px;
   height: 300px;
   overflow-y: scroll;
+  
 }
 
 .contents ul {
@@ -59,6 +61,7 @@
 }
 
 .file-command {
+  position: absolute;
   background-color: #202020;
   display: grid;
   padding: 1em;
@@ -69,6 +72,3 @@ mat-hint {
   color: #dddddd;
 }
 
-.background{
-  
-}
