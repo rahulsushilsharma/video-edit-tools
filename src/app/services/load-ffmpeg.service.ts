@@ -17,7 +17,14 @@ export class LoadFfmpegService {
   constructor(public UiControls: UiControlsService) {}
 
   async load() {
-    await this.ffmpeg.load();
+    try{
+      await this.ffmpeg.load();
+
+    }
+    catch{
+      console.log('ffmpeg already loaded');
+      
+    }
     this.ffmpeg.setProgress(({ ratio }) => {
       this.progress = ratio * 100;
       console.log(this.progress);

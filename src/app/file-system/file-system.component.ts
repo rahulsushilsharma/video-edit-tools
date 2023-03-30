@@ -40,7 +40,7 @@ export class FileSystemComponent implements AfterViewInit {
 
     let dirList = this.ffmpeg.listDir_('./');
     for (let dir of dirList) {
-      if (!['tmp', 'home', 'dev', 'proc'].includes(dir.folderName)) {
+      if (!['tmp', 'home', 'dev', 'proc','.','..'].includes(dir.folderName)) {
         if (dir.type == 'video')
           this.currentDir.push({ ...dir, icon: this.assetList.video });
         if (dir.type == 'audio')
@@ -57,7 +57,7 @@ export class FileSystemComponent implements AfterViewInit {
     this.currentDir = [];
     let dirList = this.ffmpeg.listDir_(path);
     for (let dir of dirList) {
-      if (!['tmp', 'home', 'dev', 'proc'].includes(dir.folderName)) {
+      if (!['tmp', 'home', 'dev', 'proc','.','..'].includes(dir.folderName)) {
         if (dir.type == 'video')
           this.currentDir.push({ ...dir, icon: this.assetList.video });
         if (dir.type == 'audio')

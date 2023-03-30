@@ -69,7 +69,7 @@ export class VideoTrimComponent implements AfterViewInit {
     let start = new Date().getTime();
     await this.ffmpeg.ffmpeg.run(
       '-i',
-      'test.mp4',
+      this.videoPlayer.mediaInfo.name,
       '-ss',
       this.clip_data.start_clip,
       '-to',

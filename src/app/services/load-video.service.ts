@@ -7,6 +7,7 @@ export class LoadVideoService {
   videoBlobUrl: any;
   video : any
   audioWaveformUrl:any
+  mediaInfo!: { name: string; size: number; type: string; };
   
   // VideoDownloadProgress!: number;
   // videoBlob!: Blob;

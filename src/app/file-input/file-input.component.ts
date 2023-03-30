@@ -47,9 +47,17 @@ export class FileInputComponent {
     this.loadVideo.videoBlobUrl = this.domSanitizer.bypassSecurityTrustUrl(
       URL.createObjectURL(files[0])
     );
+    console.log(files[0]);
+    this.loadVideo.mediaInfo= {
+      name : files[0].name.trim().replaceAll('\W',''),
+      size : files[0].size,
+      type : files[0].type
+    }
+ 
+    
     await this.ffmpeg.load();
     let file = await fetchFile(files[0]);
-    this.ffmpeg.ffmpeg.FS('writeFile', 'test.mp4', file);
+    this.ffmpeg.ffmpeg.FS('writeFile', this.loadVideo.mediaInfo.name, file);
     this.UiControls.FileInputComponentViewToggle = true;
   }
 
@@ -58,9 +66,15 @@ export class FileInputComponent {
     this.loadVideo.videoBlobUrl = this.domSanitizer.bypassSecurityTrustUrl(
       URL.createObjectURL(file)
     );
+    console.log(file);
+    this.loadVideo.mediaInfo= {
+      name : file.name.trim().replaceAll('\W',''),
+      size : file.size,
+      type : file.type
+    }
     await this.ffmpeg.load();
     let file1 = await fetchFile(file);
-    this.ffmpeg.ffmpeg.FS('writeFile', 'test.mp4', file1);
+    this.ffmpeg.ffmpeg.FS('writeFile', this.loadVideo.mediaInfo.name, file1);
     this.UiControls.FileInputComponentViewToggle = true;
   }
 }
