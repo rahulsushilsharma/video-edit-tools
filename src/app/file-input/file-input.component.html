@@ -1,23 +1,65 @@
 <div class="container">
   <!-- <p>file-input works!</p> -->
 
-  <div
-    class="drop-zone"
-    (drop)="onDrop($event)"
-    (dragover)="onDragOver($event)"
-    (dragleave)="onDragLeave($event)"
-    [class.drag-over]="isDragOver"
-  >
-    Drop your files here
+  <div class="welcome">
+    <h1>Hi Welcome to Video Edit Tools</h1>
+    <h3>
+      This is free tool for edditing your videos on your local machine (no data
+      is sent to server)
+    </h3>
   </div>
-  <div class="file-input-wrapper">
-    <input
-      type="file"
-      id="my-file-input"
-      (change)="onFileSelected($event)"
-      class="file-input"
-    />
-    <span class="file-name"></span>
+
+  <div class="files">
+    <div
+      class="drop-zone"
+      (drop)="onDrop($event)"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      [class.drag-over]="isDragOver"
+    >
+      Drop your files here
+    </div>
+    <div class="file-input-wrapper">
+      <input
+        type="file"
+        id="my-file-input"
+        (change)="onFileSelected($event)"
+        class="file-input"
+      />
+      <span class="file-name"></span>
+    </div>
+  </div>
+  <div class="capablities">
+    <div class="feature genaric_container">
+      <img src="" alt="">
+      <h3>feature Title</h3>
+      <h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni error distinctio rerum est iure debitis, repellat suscipit adipisci ea pariatur sunt maxime laboriosam, hic perferendis dolores odit alias. Vel, cum.</h5>
+    </div>
+    <div class="feature genaric_container">
+      <img src="" alt="">
+      <h3>feature Title</h3>
+      <h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni error distinctio rerum est iure debitis, repellat suscipit adipisci ea pariatur sunt maxime laboriosam, hic perferendis dolores odit alias. Vel, cum.</h5>
+    </div>
+    <div class="feature genaric_container">
+      <img src="" alt="">
+      <h3>feature Title</h3>
+      <h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni error distinctio rerum est iure debitis, repellat suscipit adipisci ea pariatur sunt maxime laboriosam, hic perferendis dolores odit alias. Vel, cum.</h5>
+    </div>
+    <div class="feature genaric_container">
+      <img src="" alt="">
+      <h3>feature Title</h3>
+      <h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni error distinctio rerum est iure debitis, repellat suscipit adipisci ea pariatur sunt maxime laboriosam, hic perferendis dolores odit alias. Vel, cum.</h5>
+    </div>
+    <div class="feature genaric_container">
+      <img src="" alt="">
+      <h3>feature Title</h3>
+      <h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni error distinctio rerum est iure debitis, repellat suscipit adipisci ea pariatur sunt maxime laboriosam, hic perferendis dolores odit alias. Vel, cum.</h5>
+    </div>
+    <div class="feature genaric_container">
+      <img src="" alt="">
+      <h3>feature Title</h3>
+      <h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni error distinctio rerum est iure debitis, repellat suscipit adipisci ea pariatur sunt maxime laboriosam, hic perferendis dolores odit alias. Vel, cum.</h5>
+    </div>
   </div>
 </div>
 <!-- in -->

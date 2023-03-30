@@ -10,7 +10,7 @@
     font-weight: bold;
     text-align: center;
     transition: border-color 0.2s ease-in-out;
-    margin-top: 25vh;
+    
 }
 
 .drop-zone.drag-over {
@@ -74,4 +74,21 @@ input[type="file"].has-file {
     z-index: 9999;
     position: fixed;
     top: 0;
+    display: grid;
+}
+
+.welcome{
+    text-align: center;
+    padding: auto;
+    margin-top: 3em;
+}
+
+.capablities{
+    display: grid;
+    grid-template-columns: repeat(3,minmax(11em,15fr));
+    gap: 1em;
+    margin: 0 5em;
+}
+.feature{
+    width:fit-content
 }
