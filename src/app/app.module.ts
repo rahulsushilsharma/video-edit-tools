@@ -15,6 +15,7 @@ import { SharedModule } from './shared/shared.module';
 import { InitialPageComponent } from './initial-page/initial-page.component';
 import { FileInputComponent } from './file-input/file-input.component';
 import { FileSystemComponent } from './file-system/file-system.component';
+import { FormatConvortorComponent } from './format-convortor/format-convortor.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FileSystemComponent } from './file-system/file-system.component';
     VideoPlayerComponent,
     FileInputComponent,
     FileSystemComponent,
+    FormatConvortorComponent,
   ],
   imports: [
     BrowserModule,
