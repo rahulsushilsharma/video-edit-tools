@@ -1,1 +1,10 @@
 <p>format-convortor works!</p>
+<mat-form-field appearance="fill">
+  <mat-label>Select Format</mat-label>
+  <mat-select (valueChange)="formatSelected($event)">
+    <mat-option *ngFor="let format of formats" [value]="format">
+      {{ format }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="convert()">convert</button>

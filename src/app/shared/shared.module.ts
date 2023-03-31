@@ -12,7 +12,7 @@ import { ExtractAudioComponent } from './extract-audio/extract-audio.component';
 import { ProcessingComponent } from './processing/processing.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
-
+import {MatSelectModule} from '@angular/material/select';
 
 const components: any = [
   ShellComponent,
@@ -31,6 +31,7 @@ const modules = [
   MatButtonModule,
   MatCardModule,
   MatInputModule,
+  MatSelectModule,
 ];
 
 @NgModule({

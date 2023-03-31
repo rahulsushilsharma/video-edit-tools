@@ -8,11 +8,14 @@
     <app-processing
       *ngIf="UiControls.ProgressComponentViewToggle"
     ></app-processing>
-    <app-file-system *ngIf="UiControls.FileSystemComponentViewToggle" ></app-file-system>
+    <app-file-system
+      *ngIf="UiControls.FileSystemComponentViewToggle"
+    ></app-file-system>
+    <app-format-convortor></app-format-convortor>
   </div>
-  <app-file-input *ngIf="!UiControls.FileInputComponentViewToggle">
-  </app-file-input>
 </div>
+<app-file-input *ngIf="!UiControls.FileInputComponentViewToggle">
+</app-file-input>
 
 <!-- <app-initial-page *ngIf="!ffmpeg.loaded"></app-initial-page> -->
 <!-- <div class="video_container"> -->
