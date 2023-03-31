@@ -48,13 +48,8 @@ export class FileInputComponent {
       URL.createObjectURL(files[0])
     );
     console.log(files[0]);
-    this.loadVideo.mediaInfo= {
-      name : files[0].name.trim().replaceAll('\W',''),
-      size : files[0].size,
-      type : files[0].type
-    }
- 
-    
+    this.loadVideo.mediaInfo = this.setFileMeta(files[0]);
+
     await this.ffmpeg.load();
     let file = await fetchFile(files[0]);
     this.ffmpeg.ffmpeg.FS('writeFile', this.loadVideo.mediaInfo.name, file);
@@ -67,14 +62,17 @@ export class FileInputComponent {
       URL.createObjectURL(file)
     );
     console.log(file);
-    this.loadVideo.mediaInfo= {
-      name : file.name.trim().replaceAll('\W',''),
-      size : file.size,
-      type : file.type
-    }
+    this.loadVideo.mediaInfo = this.setFileMeta(file);
     await this.ffmpeg.load();
     let file1 = await fetchFile(file);
     this.ffmpeg.ffmpeg.FS('writeFile', this.loadVideo.mediaInfo.name, file1);
     this.UiControls.FileInputComponentViewToggle = true;
+  }
+  setFileMeta(file: any) {
+    return {
+      name: file.name.trim().replace(/[^0-9a-zA-Z.]/g, ''),
+      size: file.size,
+      type: file.type,
+    };
   }
 }
