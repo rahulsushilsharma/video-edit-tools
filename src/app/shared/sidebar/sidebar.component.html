@@ -1,10 +1,24 @@
-<nav class="nav__cont" #nav_ (click)="expand()">
-
-</nav>
-<div class="nav_main"  #navbar >
-    <button mat-raised-button color="primary" (click)="UiControls.TrimComponentViewToggle = !UiControls.TrimComponentViewToggle  ">trim</button>
-    <button mat-raised-button color="primary" (click)="UiControls.FileSystemComponentViewToggle = !UiControls.FileSystemComponentViewToggle ">Files</button>
-
+<nav class="nav__cont" #nav_ (click)="expand()"></nav>
+<div class="nav_main" #navbar>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="
+      UiControls.TrimComponentViewToggle = !UiControls.TrimComponentViewToggle
+    "
+  >
+    trim
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="
+      UiControls.FileSystemComponentViewToggle =
+        !UiControls.FileSystemComponentViewToggle
+    "
+  >
+    Files
+  </button>
 </div>
 
 <div class="cover hide" (click)="colapse()" #cover></div>

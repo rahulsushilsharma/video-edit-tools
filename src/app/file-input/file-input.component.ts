@@ -17,15 +17,28 @@ export class FileInputComponent {
     private domSanitizer: DomSanitizer,
     public UiControls: UiControlsService
   ) {}
+
   async updateVideo() {
     await this.ffmpeg.load();
-
-    // let blob = await this.loadVideo.downloadVideo(
-    //   'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4'
-    // );
   }
   isDragOver = false;
-
+  async downloadFile(value: string) {
+    console.log(value);
+    //'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4'
+    let blob = await this.loadVideo.downloadVideo(value);
+    this.loadVideo.videoBlobUrl = this.domSanitizer.bypassSecurityTrustUrl(
+      URL.createObjectURL(blob)
+    );
+    this.loadVideo.mediaInfo = {
+      name:'downloaded_file.mp4',
+      size:12345,
+      type:'video/mp4'
+    }
+    await this.ffmpeg.load();
+    let file = await fetchFile(blob);
+    this.ffmpeg.ffmpeg.FS('writeFile', this.loadVideo.mediaInfo.name, file);
+    this.UiControls.FileInputComponentViewToggle = true;
+  }
   onDrop(event: DragEvent) {
     event.preventDefault();
     const files = event.dataTransfer!.files;

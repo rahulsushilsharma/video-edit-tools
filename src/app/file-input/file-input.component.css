@@ -92,3 +92,18 @@ input[type="file"].has-file {
 .feature{
     width:fit-content
 }
+.files{
+    width: 91vw;
+    margin: 1em auto;
+    padding: 1em;
+}
+.url{
+    width: 100%;
+}
+.download{
+    display: flex;
+    gap: 1em;
+}
+.download button{
+    padding: 2em;
+}
