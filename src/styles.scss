@@ -1,19 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
 
-*,body{
-    margin: 0;
-    padding: 0;
-}
-body{
-    max-width: 100% !important;
-} 
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+
+/* For use in _color-definitions.scss */
+$palette-mcgpalette0:
+rgb(232, 234, 246)
+rgb(197, 203, 233)
+rgb(159, 168, 218)
+rgb(121, 133, 203)
+rgb(92, 107, 192)
+rgb(63, 81, 181)
+rgb(57, 74, 174)
+rgb(49, 64, 165)
+rgb(41, 55, 157)
+rgb(27, 39, 141)
+rgb(198, 203, 255)
+rgb(147, 157, 255)
+rgb(96, 110, 255)
+rgb(71, 87, 255)
+;
+$yt_fe-primary: mat.define-palette(mat.$indigo-palette);
+$yt_fe-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$yt_fe-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$yt_fe-theme: mat.define-light-theme((
+  color: (
+    primary: $yt_fe-primary,
+    accent: $yt_fe-accent,
+    warn: $yt_fe-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($yt_fe-theme);
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-.genaric_container{
-    border-radius: 1em;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    background-color: aliceblue;
-    padding: 1em;
-}
