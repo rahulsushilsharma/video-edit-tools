@@ -4,7 +4,7 @@ import { LoadFfmpegService } from '../services/load-ffmpeg.service';
 @Component({
   selector: 'app-file-system',
   templateUrl: './file-system.component.html',
-  styleUrls: ['./file-system.component.css'],
+  styleUrls: ['./file-system.component.scss'],
 })
 export class FileSystemComponent implements AfterViewInit {
   currentDir: {

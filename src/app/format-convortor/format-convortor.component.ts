@@ -5,7 +5,7 @@ import { LoadVideoService } from '../services/load-video.service';
 @Component({
   selector: 'app-format-convortor',
   templateUrl: './format-convortor.component.html',
-  styleUrls: ['./format-convortor.component.css']
+  styleUrls: ['./format-convortor.component.scss']
 })
 export class FormatConvortorComponent {
   file!: Uint8Array;
