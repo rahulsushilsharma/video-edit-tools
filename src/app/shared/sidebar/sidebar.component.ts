@@ -4,7 +4,7 @@ import { UiControlsService } from 'src/app/services/ui-controls.service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css'],
+  styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
   @ViewChild('navbar') navbar!: any;

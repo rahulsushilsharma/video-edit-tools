@@ -7,7 +7,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-video-trim',
   templateUrl: './video-trim.component.html',
-  styleUrls: ['./video-trim.component.css'],
+  styleUrls: ['./video-trim.component.scss'],
 })
 export class VideoTrimComponent implements AfterViewInit {
   @ViewChild('start_thumb') start_thumb: any;

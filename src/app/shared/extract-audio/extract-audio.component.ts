@@ -7,7 +7,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-extract-audio',
   templateUrl: './extract-audio.component.html',
-  styleUrls: ['./extract-audio.component.css'],
+  styleUrls: ['./extract-audio.component.scss'],
 })
 export class ExtractAudioComponent implements AfterViewInit {
   @ViewChild('start_thumb') start_thumb: any;
