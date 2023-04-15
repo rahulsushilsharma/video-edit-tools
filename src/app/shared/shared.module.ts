@@ -13,7 +13,7 @@ import { ProcessingComponent } from './processing/processing.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
-
+import {MatIconModule} from '@angular/material/icon';
 const components: any = [
   ShellComponent,
   VideoTrimComponent,
@@ -32,6 +32,7 @@ const modules = [
   MatCardModule,
   MatInputModule,
   MatSelectModule,
+  MatIconModule,
 ];
 
 @NgModule({

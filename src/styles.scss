@@ -20,7 +20,7 @@ $yt_fe-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$yt_fe-theme: mat.define-light-theme((
+$yt_fe-theme: mat.define-dark-theme((
   color: (
     primary: $yt_fe-primary,
     accent: $yt_fe-accent,

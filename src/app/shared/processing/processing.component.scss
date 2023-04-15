@@ -1,22 +1,35 @@
 .container {
-    width: 75%;
-    height: 200px;
-    background-color: #eeeeee;
-    margin: 33vh auto;
-    padding: 4em;
-    border-radius: 11px;
+  width: 75%;
+  display: grid;
+  background-color: #eeeeee;
+  margin: 33vh auto;
+  padding: 1em;
+  border-radius: 11px;
+  button {
+  }
 }
 
 .progress {
-    width: 95%;
-    margin: 1.5em auto;
+  width: 95%;
+  margin: 1.5em auto;
 }
 
 .background {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #3f3f3f81;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #3f3f3f81;
+  z-index: 999;
+}
+
+.image-container {
+  display: block;
+  margin: 0 auto;
+  width: fit-content;
+  img {
+    aspect-ratio: 1/1;
+    width: 13em;
+  }
 }
