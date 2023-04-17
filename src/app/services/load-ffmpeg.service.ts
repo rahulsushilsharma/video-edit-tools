@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild } from '@angular/core';
 import { createFFmpeg } from '@ffmpeg/ffmpeg';
 import { UiControlsService } from '.././services/ui-controls.service';
-
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class LoadFfmpegService {
+  logStream!: Observable<any>;
+  logs: any[] = [];
   ffmpeg = createFFmpeg();
   progress!: number;
   loaded = false;
@@ -17,13 +19,10 @@ export class LoadFfmpegService {
   constructor(public UiControls: UiControlsService) {}
 
   async load() {
-    try{
+    try {
       await this.ffmpeg.load();
-
-    }
-    catch{
+    } catch {
       console.log('ffmpeg already loaded');
-      
     }
     this.ffmpeg.setProgress(({ ratio }) => {
       this.progress = ratio * 100;
@@ -36,19 +35,22 @@ export class LoadFfmpegService {
        * ratio is a float number between 0 to 1.
        */
     });
-    this.ffmpeg.setLogger(({ type, message }) => {
-      if (type == 'ffout') this.log.ffout += message + '\n';
-      if (type == 'fferr') this.log.fferr += message + '\n';
-      if (type == 'info') this.log.info += message + '\n';
+    this.logStream = new Observable((observer) => {
+      this.ffmpeg.setLogger(({ type, message }) => {
+        if (type == 'ffout') this.log.ffout += message + '\n';
+        if (type == 'fferr') observer.next(message);
+        if (type == 'info') this.log.info += message + '\n';
 
-      /*
-       * type can be one of following:
-       *
-       * info: internal workflow debug messages
-       * fferr: ffmpeg native stderr output
-       * ffout: ffmpeg native stdout output
-       */
+        /*
+         * type can be one of following:
+         *
+         * info: internal workflow debug messages
+         * fferr: ffmpeg native stderr output
+         * ffout: ffmpeg native stdout output
+         */
+      });
     });
+
     this.ffmpeg.FS('mkdir', '/out');
     this.loaded = true;
   }
@@ -69,18 +71,18 @@ export class LoadFfmpegService {
     if (this.ffmpeg.isLoaded()) return this.ffmpeg.FS('readdir', path);
     else return [] as string[];
   }
-  getFileType(dir:string){
-    
-    if(dir.split('.').at(-1) =='mp4'){
-      return 'video'
+  getFileType(dir: string) {
+    if (dir.split('.').at(-1) == 'mp4') {
+      return 'video';
     }
-    return 'folder'
+    return 'folder';
   }
+
   listDir_(path: string) {
     let currentDir: {
       path: string;
       folderName: string;
-      type:string;
+      type: string;
     }[] = [];
     try {
       console.log(currentDir);
@@ -89,11 +91,10 @@ export class LoadFfmpegService {
 
       for (let dir of newDir) {
         if (!['tmp', 'home', 'dev', 'proc'].includes(dir)) {
-          let data = 
-          currentDir.push({
+          let data = currentDir.push({
             path: `${path}/${dir}`,
             folderName: dir,
-            type :this.getFileType(dir)
+            type: this.getFileType(dir),
           });
         }
       }
@@ -102,54 +103,29 @@ export class LoadFfmpegService {
         {
           path: `./`,
           folderName: '.',
-          type :this.getFileType('.')
+          type: this.getFileType('.'),
         },
         {
           path: `../`,
           folderName: '..',
-          type :this.getFileType('..')
+          type: this.getFileType('..'),
         },
       ];
 
       console.log('path is not explorable');
     }
 
-    return currentDir
+    return currentDir;
   }
-  exploreDirectory(path: string) {
-    // list the contents of the directory
-    let entries;
+
+  createDir(dirName: string) {
     try {
-      entries = this.ffmpeg.FS('readdir', path);
+      this.ffmpeg.FS('mkdir', dirName);
+      return { status: 'success', msg: 'dir created' };
     } catch {
-      entries = ['.', '..'];
-    }
-    console.log(entries, path);
-
-    // iterate over the entries
-    for (const entry of entries) {
-      // print the name and type of the entry
-      if (entry === 'null') continue;
-      const name = entry;
-      let type = '';
-      if (entry.split('.').length >= 2) type = 'file';
-      else type = 'directory';
-
-      console.log(`${name} (${type})`);
-
-      // recursively explore subdirectories
-      if (type === 'directory') {
-        this.exploreDirectory(`${path}/${name}`);
-      }
+      return { status: 'failure', msg: 'unable to make a dir' };
     }
   }
 
-  createDir(dirName:string){
-    try {
-      this.ffmpeg.FS('mkdir',dirName)
-      return {status:'success',msg:'unable to make a dir'}
-    }catch{
-      return {status:'failure',msg:'unable to make a dir'}
-    }
-  }
+  
 }

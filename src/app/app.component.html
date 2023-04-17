@@ -1,4 +1,4 @@
-<div>
+<div class="main-container mat-app-background" >
   <app-sidebar></app-sidebar>
   <div class="main">
     <app-video-player> </app-video-player>
@@ -6,15 +6,15 @@
     <app-video-trim *ngIf="UiControls.TrimComponentViewToggle"></app-video-trim>
     <!-- <app-extract-audio></app-extract-audio> -->
     <app-processing
-      
+      *ngIf="UiControls.ProgressComponentViewToggle"
     ></app-processing>
     <app-file-system
       *ngIf="UiControls.FileSystemComponentViewToggle"
     ></app-file-system>
-    <app-format-convortor></app-format-convortor>
+    <app-format-convortor  *ngIf="UiControls.FormatConverterComponentViewToggle" ></app-format-convortor>
   </div>
 </div>
-<app-file-input *ngIf="UiControls.FileInputComponentViewToggle">
+<app-file-input *ngIf="!UiControls.FileInputComponentViewToggle">
 </app-file-input>
 
 <!-- <app-initial-page *ngIf="!ffmpeg.loaded"></app-initial-page> -->

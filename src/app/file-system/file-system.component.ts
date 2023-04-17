@@ -24,6 +24,7 @@ export class FileSystemComponent implements AfterViewInit {
   constructor(public ffmpeg: LoadFfmpegService) {}
   ngAfterViewInit(): void {
     // this.readFiles()
+    
   }
 
   createFolder(value: any) {

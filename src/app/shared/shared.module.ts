@@ -14,6 +14,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 const components: any = [
   ShellComponent,
   VideoTrimComponent,
@@ -33,6 +35,7 @@ const modules = [
   MatInputModule,
   MatSelectModule,
   MatIconModule,
+  MatTooltipModule,
 ];
 
 @NgModule({

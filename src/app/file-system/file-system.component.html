@@ -15,13 +15,13 @@
       <button mat-raised-button color="primary" (click)="initialRead()">
         Explore
       </button>
-      <button mat-icon-button color="primary" (click)="toggleAddFile()">
+      <button mat-icon-button matTooltip="Create Folder" color="primary" (click)="toggleAddFile()">
         +
       </button>
     </div>
     <div class="contents">
-      <button mat-icon-button color="primary" (click)="readFiles('../')">
-        <
+      <button mat-icon-button matTooltip="Go Back" color="primary" (click)="readFiles('../')">
+        <mat-icon>arrow_back</mat-icon>
       </button>
       <div *ngIf="showAddFile" class="background">
         <div class="file-command">

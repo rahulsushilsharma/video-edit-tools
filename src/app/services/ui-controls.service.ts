@@ -9,5 +9,6 @@ export class UiControlsService {
   ProgressComponentViewToggle : boolean = false
   FileInputComponentViewToggle : boolean = false
   FileSystemComponentViewToggle :boolean = false
+  FormatConverterComponentViewToggle :boolean = false
   constructor() { }
 }

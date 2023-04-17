@@ -19,6 +19,16 @@
   >
     Files
   </button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="
+      UiControls.FormatConverterComponentViewToggle =
+        !UiControls.FormatConverterComponentViewToggle
+    "
+  >
+    convert
+  </button>
 </div>
 
 <div class="cover hide" (click)="colapse()" #cover></div>

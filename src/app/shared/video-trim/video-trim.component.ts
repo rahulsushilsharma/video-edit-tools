@@ -43,6 +43,8 @@ export class VideoTrimComponent implements AfterViewInit {
 
     let milisec = val.toString().split('.')[1];
     this.clip_data.start_clip = this.toTime(val) + '.' + milisec;
+    this.clip_data.length =
+    parseFloat(this.clip_data.calc_end) - parseFloat(this.clip_data.calc_start) + '';
   }
   backward(val: any) {
     this.videoPlayer.video.currentTime = val;
@@ -53,7 +55,7 @@ export class VideoTrimComponent implements AfterViewInit {
     this.clip_data.end_clip = this.toTime(val) + '.' + milisec;
 
     this.clip_data.length =
-      parseFloat(val) - parseFloat(this.clip_data.calc_end) + '';
+      parseFloat(this.clip_data.calc_end) - parseFloat(this.clip_data.calc_start) + '';
   }
   timeout(ms: number | undefined) {
     return new Promise((resolve) => setTimeout(resolve, ms));

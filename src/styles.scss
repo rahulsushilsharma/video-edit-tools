@@ -17,14 +17,15 @@ $yt_fe-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $yt_fe-warn: mat.define-palette(mat.$red-palette);
-
+$yt_fe-que: mat.define-palette(mat.$blue-grey-palette);
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
 $yt_fe-theme: mat.define-dark-theme((
   color: (
     primary: $yt_fe-primary,
     accent: $yt_fe-accent,
-    warn: $yt_fe-warn,
+    warn: $yt_fe-que,
+    
   )
 ));
 
