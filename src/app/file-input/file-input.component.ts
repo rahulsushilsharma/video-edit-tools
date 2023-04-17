@@ -30,10 +30,10 @@ export class FileInputComponent {
       URL.createObjectURL(blob)
     );
     this.loadVideo.mediaInfo = {
-      name:'downloaded_file.mp4',
-      size:12345,
-      type:'video/mp4'
-    }
+      name: 'downloaded_file.mp4',
+      size: 12345,
+      type: 'video/mp4',
+    };
     await this.ffmpeg.load();
     let file = await fetchFile(blob);
     this.ffmpeg.ffmpeg.FS('writeFile', this.loadVideo.mediaInfo.name, file);
@@ -88,4 +88,6 @@ export class FileInputComponent {
       type: file.type,
     };
   }
+
+  setFilesInFileSystem() {}
 }
