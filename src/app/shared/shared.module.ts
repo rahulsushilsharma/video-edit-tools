@@ -15,6 +15,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltip } from '@angular/material/tooltip';
 
 const components: any = [
   ShellComponent,
@@ -22,6 +23,7 @@ const components: any = [
   SidebarComponent,
   ExtractAudioComponent,
   ProcessingComponent,
+  
 ];
 
 const modules = [
@@ -36,6 +38,7 @@ const modules = [
   MatSelectModule,
   MatIconModule,
   MatTooltipModule,
+  
 ];
 
 @NgModule({

@@ -4,6 +4,7 @@
     <mat-slider min="0" [max]="video_duration" [step]="seek_steps">
       <input
         matSliderStartThumb
+        maticon
         #start_range
         (change)="forward(start_range.value)"
       />
@@ -16,8 +17,9 @@
   <div class="meta">
     <div><p>Start Thumb</p><canvas #start_thumb></canvas></div>
     <div><p>End Thumb</p><canvas #end_thumb></canvas></div>
-  
+    <div>
     <table>
+      <p>Clip Details</p>
       <tr>
         <td>Start Clip</td>
         <td>{{ clip_data.calc_start | number: '.3' }}</td>
@@ -31,6 +33,7 @@
         <td>{{ clip_data.length | number: '.3' }}</td>
       </tr>
     </table>
+  </div>
   </div>
   
   <button mat-raised-button color="primary" (click)="trim()">trim</button>

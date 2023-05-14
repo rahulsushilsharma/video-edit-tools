@@ -1,34 +1,44 @@
-<nav class="nav__cont" #nav_ (click)="expand()"></nav>
-<div class="nav_main" #navbar>
+<nav class="nav__cont" #nav_ (click)="expand()">
   <button
-    mat-raised-button
-    color="primary"
     (click)="
       UiControls.TrimComponentViewToggle = !UiControls.TrimComponentViewToggle
     "
+    matTooltip="Trim Media"
+    matTooltipPosition="right"
+    mat-icon-button
+    color="primary"
   >
-    trim
+    <mat-icon>content_cut</mat-icon>
   </button>
   <button
-    mat-raised-button
-    color="primary"
+    matTooltip="View Files"
+    matTooltipPosition="right"
     (click)="
       UiControls.FileSystemComponentViewToggle =
         !UiControls.FileSystemComponentViewToggle
     "
+    mat-icon-button
+    color="primary"
   >
-    Files
+    <mat-icon>file_copy</mat-icon>
   </button>
   <button
-    mat-raised-button
-    color="primary"
+    matTooltip="Convert Media to different format"
+    matTooltipPosition="right"
     (click)="
       UiControls.FormatConverterComponentViewToggle =
         !UiControls.FormatConverterComponentViewToggle
     "
+    mat-icon-button
+    color="primary"
   >
-    convert
+    <mat-icon>repeat</mat-icon>
   </button>
+</nav>
+<!-- <div class="nav_main" #navbar>
+  <button mat-raised-button color="primary">trim</button>
+  <button mat-raised-button color="primary">Files</button>
+  <button mat-raised-button color="primary">convert</button>
 </div>
 
-<div class="cover hide" (click)="colapse()" #cover></div>
+<div class="cover hide" (click)="colapse()" #cover></div> -->
