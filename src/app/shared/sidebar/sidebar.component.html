@@ -1,4 +1,4 @@
-<nav class="nav__cont" #nav_ (click)="expand()">
+<nav class="nav__cont" #nav_>
   <button
     (click)="
       UiControls.TrimComponentViewToggle = !UiControls.TrimComponentViewToggle
@@ -33,6 +33,18 @@
     color="primary"
   >
     <mat-icon>repeat</mat-icon>
+  </button>
+  <button
+    matTooltip="Extract Audio from video"
+    matTooltipPosition="right"
+    (click)="
+      UiControls.AudioExtractionComponentViewToggle =
+        !UiControls.AudioExtractionComponentViewToggle
+    "
+    mat-icon-button
+    color="primary"
+  >
+    <mat-icon>music_note</mat-icon>
   </button>
 </nav>
 <!-- <div class="nav_main" #navbar>

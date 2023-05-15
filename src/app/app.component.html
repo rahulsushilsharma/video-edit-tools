@@ -1,4 +1,4 @@
-<div class="main-container mat-app-background" >
+<div class="main-container mat-app-background">
   <app-sidebar></app-sidebar>
   <div class="main">
     <app-video-player> </app-video-player>
@@ -11,7 +11,12 @@
     <app-file-system
       *ngIf="UiControls.FileSystemComponentViewToggle"
     ></app-file-system>
-    <app-format-convortor  *ngIf="UiControls.FormatConverterComponentViewToggle" ></app-format-convortor>
+    <app-format-convortor
+      *ngIf="UiControls.FormatConverterComponentViewToggle"
+    ></app-format-convortor>
+    <app-extract-audio
+      *ngIf="UiControls.AudioExtractionComponentViewToggle"
+    ></app-extract-audio>
   </div>
 </div>
 <app-file-input *ngIf="!UiControls.FileInputComponentViewToggle">

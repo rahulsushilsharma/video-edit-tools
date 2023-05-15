@@ -23,6 +23,8 @@ export class ExtractAudioComponent implements AfterViewInit {
   };
   file!: Uint8Array;
   out_video!: SafeUrl;
+  video_name = this.videoPlayer.mediaInfo.name.split('.')[0];
+
   constructor(
     public videoPlayer: LoadVideoService,
     private domSanitizer: DomSanitizer,
@@ -39,24 +41,34 @@ export class ExtractAudioComponent implements AfterViewInit {
   timeout(ms: number | undefined) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
-
+  /**
+   *
+   *
+   * @memberof ExtractAudioComponent
+   */
   async extract() {
-    
     let start = new Date().getTime();
-    
-    await this.ffmpeg.runCommand(`-i ${this.videoPlayer.mediaInfo.name} -filter_complex showwavespic=s=1920x108 -frames:v 1 out/output.png`)
-    // await this.ffmpeg.runCommand('-i test.mp4 -q:a 0 -map a out/extract_audio.mp3')
+
+    // await this.ffmpeg.runCommand(
+    //   `-i ${this.videoPlayer.mediaInfo.name} -filter_complex showwavespic=s=1920x108 -frames:v 1 out/output.png`
+    // );
+    await this.ffmpeg.runCommand(
+      `-i ${this.video_name} -q:a 0 -map a out/${this.videoPlayer.mediaInfo.name}_extract_audio.mp3`
+    );
     console.log(this.ffmpeg.log);
     let end = new Date().getTime();
     console.log('time used :: ', end - start);
 
-    const da = this.ffmpeg.ffmpeg.FS('readFile', 'out/output.png');
+    const da = this.ffmpeg.ffmpeg.FS(
+      'readFile',
+      `out/${this.video_name}_extract_audio.mp3`
+    );
     let video = new Blob([da]);
     this.out_video = this.domSanitizer.bypassSecurityTrustUrl(
       URL.createObjectURL(video)
     );
-    this.videoPlayer.audioWaveformUrl = this.out_video
-    // this.downLoadFile(video);
+    this.videoPlayer.audioWaveformUrl = this.out_video;
+    this.downLoadFile(video);
   }
 
   /**
@@ -67,7 +79,7 @@ export class ExtractAudioComponent implements AfterViewInit {
     var downloadURL = window.URL.createObjectURL(data);
     var link = document.createElement('a');
     link.href = downloadURL;
-    link.download = 'output.png';
+    link.download = `${this.video_name}_extract_audio.mp3`;
     link.click();
   }
 }

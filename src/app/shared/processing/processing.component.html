@@ -1,10 +1,16 @@
 <div class="background">
   <div class="container">
-    <!-- <button mat-mini-fab>
-      <mat-icon>close</mat-icon>
-    </button> -->
-    <div #log_container class="log">
-      <p *ngFor="let item of data">{{item}}</p>
+    <button
+      matTooltip="Show Logs"
+      matTooltipPosition="right"
+      mat-icon-button
+      color="primary"
+      (click)="showLogs=!showLogs"
+    >
+      <mat-icon>visibility</mat-icon>
+    </button>
+    <div *ngIf="showLogs" #log_container class="log hidden">
+      <p *ngFor="let item of data">{{ item }}</p>
     </div>
     <div class="image-container">
       <img src="../../../assets/loading_dance.gif" alt="anime girl dancing" />
@@ -15,7 +21,7 @@
         [value]="ffmpeg.progress"
       ></mat-progress-bar>
     </div>
-    
+
     <!-- <button (click)="exit()" mat-raised-button >cancel</button> -->
   </div>
 </div>

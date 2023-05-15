@@ -13,19 +13,19 @@ export class SidebarComponent {
 
   constructor(public UiControls: UiControlsService) {}
   ngAfterViewInit(): void {
-    console.log(this.navbar.nativeElement);
+    // console.log(this.navbar.nativeElement);
   }
 
-  expand() {
-    this.navbar.nativeElement.classList.add('expand');
-    this.nav_.nativeElement.classList.add('expand');
-    this.cover.nativeElement.classList.remove('hide');
+  // expand() {
+  //   this.navbar.nativeElement.classList.add('expand');
+  //   this.nav_.nativeElement.classList.add('expand');
+  //   this.cover.nativeElement.classList.remove('hide');
 
-  }
-  colapse(){
-    this.navbar.nativeElement.classList.remove('expand');
-    this.nav_.nativeElement.classList.remove('expand');
-    this.cover.nativeElement.classList.add('hide');
+  // }
+  // colapse(){
+  //   this.navbar.nativeElement.classList.remove('expand');
+  //   this.nav_.nativeElement.classList.remove('expand');
+  //   this.cover.nativeElement.classList.add('hide');
 
-  }
+  // }
 }

@@ -11,13 +11,18 @@ export class ProcessingComponent implements OnInit {
   @ViewChild('log_container') log_container: any;
 
   data: any[] = [];
-  constructor(public ffmpeg: LoadFfmpegService,public UiControles:UiControlsService) {}
+  showLogs = false;
+  constructor(
+    public ffmpeg: LoadFfmpegService,
+    public UiControles: UiControlsService
+  ) {}
   ngOnInit() {
     this.ffmpeg.logStream.subscribe((data) => {
       this.data.push(data);
       console.log(data);
-      this.log_container.nativeElement.scrollTop =
-        this.log_container.nativeElement.scrollHeight;
+      if (this.log_container)
+        this.log_container.nativeElement.scrollTop =
+          this.log_container.nativeElement.scrollHeight;
     });
   }
 
