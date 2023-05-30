@@ -53,7 +53,7 @@ export class ExtractAudioComponent implements AfterViewInit {
     //   `-i ${this.videoPlayer.mediaInfo.name} -filter_complex showwavespic=s=1920x108 -frames:v 1 out/output.png`
     // );
     await this.ffmpeg.runCommand(
-      `-i ${this.video_name} -q:a 0 -map a out/${this.videoPlayer.mediaInfo.name}_extract_audio.mp3`
+      `-i ${this.videoPlayer.mediaInfo.name} -q:a 0 -map a out/${this.video_name}_extract_audio.mp3`
     );
     console.log(this.ffmpeg.log);
     let end = new Date().getTime();

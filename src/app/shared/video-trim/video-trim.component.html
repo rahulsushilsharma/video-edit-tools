@@ -22,15 +22,15 @@
       <p>Clip Details</p>
       <tr>
         <td>Start Clip</td>
-        <td>{{ clip_data.calc_start | number: '.3' }}</td>
+        <td>{{ clip_data.calc_start||0 | number: '.3' }}</td>
       </tr>
       <tr>
         <td>End Clip</td>
-        <td>{{ clip_data.calc_end | number: '.3' }}</td>
+        <td>{{ clip_data.calc_end||0 | number: '.3' }}</td>
       </tr>
       <tr>
         <td>Length</td>
-        <td>{{ clip_data.length | number: '.3' }}</td>
+        <td>{{ clip_data.length||0 | number: '.3' }}</td>
       </tr>
     </table>
   </div>

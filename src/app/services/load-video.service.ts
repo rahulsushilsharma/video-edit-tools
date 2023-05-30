@@ -7,7 +7,7 @@ export class LoadVideoService {
   videoBlobUrl: any;
   video: any;
   audioWaveformUrl: any;
-  mediaInfo!: { name: string; size: number; type: string };
+  mediaInfo!: { clean_name: string; name: string; size: number; type: string };
   VideoDownloadProgress!: number;
   // videoBlob!: Blob;
   // video: any;
@@ -17,7 +17,7 @@ export class LoadVideoService {
   async downloadVideo(url: string) {
     let response = await fetch(url);
     console.log(response.headers);
-    
+
     const reader = response.body!.getReader();
     const contentLength = response.headers.get('Content-Length') || '0';
     let receivedLength = 0; // received that many bytes at the moment

@@ -30,6 +30,7 @@ export class FileInputComponent {
       URL.createObjectURL(blob)
     );
     this.loadVideo.mediaInfo = {
+      clean_name: 'downloaded_file',
       name: 'downloaded_file.mp4',
       size: 12345,
       type: 'video/mp4',
@@ -82,8 +83,19 @@ export class FileInputComponent {
     this.UiControls.FileInputComponentViewToggle = true;
   }
   setFileMeta(file: any) {
+    let name: string = file.name.trim().replace(/[^0-9a-zA-Z.]/g, '');
+    const nameArr = name.split('.');
+    const ext = nameArr.pop();
+    name = nameArr.join('_') + '.' + ext;
+    console.log({
+      name: name,
+      size: file.size,
+      type: file.type,
+    });
+
     return {
-      name: file.name.trim().replace(/[^0-9a-zA-Z.]/g, ''),
+      clean_name: name.split('.')[0],
+      name: name,
       size: file.size,
       type: file.type,
     };

@@ -15,11 +15,11 @@ export class VideoTrimComponent implements AfterViewInit {
   seek_steps: number | undefined;
   video_duration: number | undefined;
   clip_data = {
-    start_clip: '',
-    end_clip: '',
-    calc_start: '',
-    calc_end: '',
-    length: '',
+    start_clip: '0',
+    end_clip: '0',
+    calc_start: '0',
+    calc_end: '0',
+    length: '0',
   };
   file!: Uint8Array;
   out_video!: SafeUrl;
@@ -44,7 +44,9 @@ export class VideoTrimComponent implements AfterViewInit {
     let milisec = val.toString().split('.')[1];
     this.clip_data.start_clip = this.toTime(val) + '.' + milisec;
     this.clip_data.length =
-    parseFloat(this.clip_data.calc_end) - parseFloat(this.clip_data.calc_start) + '';
+      parseFloat(this.clip_data.calc_end) -
+      parseFloat(this.clip_data.calc_start) +
+      '';
   }
   backward(val: any) {
     this.videoPlayer.video.currentTime = val;
@@ -55,7 +57,9 @@ export class VideoTrimComponent implements AfterViewInit {
     this.clip_data.end_clip = this.toTime(val) + '.' + milisec;
 
     this.clip_data.length =
-      parseFloat(this.clip_data.calc_end) - parseFloat(this.clip_data.calc_start) + '';
+      parseFloat(this.clip_data.calc_end) -
+      parseFloat(this.clip_data.calc_start) +
+      '';
   }
   timeout(ms: number | undefined) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -68,24 +72,19 @@ export class VideoTrimComponent implements AfterViewInit {
     ctx.drawImage(this.videoPlayer.video, 0, 0, canvas.width, canvas.height);
   }
   async trim() {
+    const cmd = `-i ${this.videoPlayer.mediaInfo.name} -ss ${this.clip_data.start_clip} -to ${this.clip_data.end_clip} -c:v libx264 -c:a aac out/${this.videoPlayer.mediaInfo.clean_name}_output.mp4`;
+    
+    console.log(cmd);
+    
     let start = new Date().getTime();
-    await this.ffmpeg.ffmpeg.run(
-      '-i',
-      this.videoPlayer.mediaInfo.name,
-      '-ss',
-      this.clip_data.start_clip,
-      '-to',
-      this.clip_data.end_clip,
-      '-c:v',
-      'libx264',
-      '-c:a',
-      'aac',
-      `out/output2.mp4`
-    );
+    await this.ffmpeg.runCommand(cmd);
     let end = new Date().getTime();
     console.log('time used :: ', end - start);
 
-    const da = this.ffmpeg.ffmpeg.FS('readFile', 'out/output2.mp4');
+    const da = this.ffmpeg.ffmpeg.FS(
+      'readFile',
+      `out/${this.videoPlayer.mediaInfo.clean_name}_output.mp4`
+    );
     let video = new Blob([da]);
     this.out_video = this.domSanitizer.bypassSecurityTrustUrl(
       URL.createObjectURL(video)
