@@ -10,12 +10,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ExtractAudioComponent } from './extract-audio/extract-audio.component';
 import { ProcessingComponent } from './processing/processing.component';
-import {MatCardModule} from '@angular/material/card';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import {MatIconModule} from '@angular/material/icon';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTooltip } from '@angular/material/tooltip';
+import { SnackbarComponent } from './snackbar/snackbar.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 const components: any = [
   ShellComponent,
@@ -23,7 +26,8 @@ const components: any = [
   SidebarComponent,
   ExtractAudioComponent,
   ProcessingComponent,
-  
+  SnackbarComponent,
+
 ];
 
 const modules = [
@@ -38,7 +42,11 @@ const modules = [
   MatSelectModule,
   MatIconModule,
   MatTooltipModule,
-  
+  MatSnackBarModule,
+  MatFormFieldModule,
+
+
+
 ];
 
 @NgModule({
@@ -46,4 +54,4 @@ const modules = [
   imports: [...modules],
   exports: [...components, ...modules],
 })
-export class SharedModule {}
+export class SharedModule { }

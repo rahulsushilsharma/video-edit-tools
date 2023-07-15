@@ -4,22 +4,33 @@ import { LoadFfmpegService } from '.././services/load-ffmpeg.service';
 import { LoadVideoService } from '.././services/load-video.service';
 import { fetchFile } from '@ffmpeg/ffmpeg';
 import { UiControlsService } from '../services/ui-controls.service';
+import { SnackbarComponent } from '../shared/snackbar/snackbar.component';
 
 @Component({
   selector: 'app-file-input',
   templateUrl: './file-input.component.html',
   styleUrls: ['./file-input.component.scss'],
+  providers: [SnackbarComponent],
+
 })
 export class FileInputComponent {
   constructor(
     public ffmpeg: LoadFfmpegService,
     public loadVideo: LoadVideoService,
     private domSanitizer: DomSanitizer,
-    public UiControls: UiControlsService
-  ) {}
+    public UiControls: UiControlsService,
+    private snackBar: SnackbarComponent
+  ) {
+    this.updateVideo()
+  }
+
 
   async updateVideo() {
+    this.snackBar.openSnackBar('downloading dependicies...', 'ok', 'right', 'top', 5000)
+
     await this.ffmpeg.load();
+    this.snackBar.openSnackBar(' dependicies downloaded', 'ok', 'right', 'top', 5000)
+
   }
   isDragOver = false;
   async downloadFile(value: string) {
@@ -101,5 +112,5 @@ export class FileInputComponent {
     };
   }
 
-  setFilesInFileSystem() {}
+  setFilesInFileSystem() { }
 }
