@@ -2,6 +2,7 @@ import { Injectable, ViewChild } from '@angular/core';
 import { createFFmpeg } from '@ffmpeg/ffmpeg';
 import { UiControlsService } from '.././services/ui-controls.service';
 import { Observable } from 'rxjs';
+import { SnackbarComponent } from '../shared/snackbar/snackbar.component';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,11 +17,14 @@ export class LoadFfmpegService {
     fferr: '',
     ffout: '',
   };
-  constructor(public UiControls: UiControlsService) {}
+  constructor(public UiControls: UiControlsService, private snackBar: SnackbarComponent) { }
 
   async load() {
     try {
+      this.snackBar.openSnackBar('downloading dependicies...', 'ok', 'right', 'top', 5000)
       await this.ffmpeg.load();
+      this.snackBar.openSnackBar('downloading dependicies...', 'ok', 'right', 'top', 5000)
+
     } catch {
       console.log('ffmpeg already loaded');
     }
@@ -127,5 +131,5 @@ export class LoadFfmpegService {
     }
   }
 
-  
+
 }
