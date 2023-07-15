@@ -1,12 +1,11 @@
-import { Component } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
-@Component({
-  selector: 'app-snackbar',
-  templateUrl: './snackbar.component.html',
-  styleUrls: ['./snackbar.component.scss']
+@Injectable({
+  providedIn: 'root'
 })
-export class SnackbarComponent {
+export class SnackbarService {
+
   constructor(private _snackBar: MatSnackBar) { }
 
   public openSnackBar(message: string, action: string = 'ok', horizontalPosition: MatSnackBarHorizontalPosition = 'right', verticalPosition: MatSnackBarVerticalPosition = 'top', duration: number = 5000) {

@@ -4,13 +4,12 @@ import { LoadFfmpegService } from '.././services/load-ffmpeg.service';
 import { LoadVideoService } from '.././services/load-video.service';
 import { fetchFile } from '@ffmpeg/ffmpeg';
 import { UiControlsService } from '../services/ui-controls.service';
-import { SnackbarComponent } from '../shared/snackbar/snackbar.component';
+import { SnackbarService } from '../services/snackbar.service';
 
 @Component({
   selector: 'app-file-input',
   templateUrl: './file-input.component.html',
   styleUrls: ['./file-input.component.scss'],
-  providers: [SnackbarComponent],
 
 })
 export class FileInputComponent {
@@ -19,7 +18,7 @@ export class FileInputComponent {
     public loadVideo: LoadVideoService,
     private domSanitizer: DomSanitizer,
     public UiControls: UiControlsService,
-    private snackBar: SnackbarComponent
+    private snackBar: SnackbarService
   ) {
     this.updateVideo()
   }

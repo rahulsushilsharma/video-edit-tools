@@ -3,6 +3,7 @@ import { LoadVideoService } from '../../services/load-video.service';
 import { LoadFfmpegService } from '../../services/load-ffmpeg.service';
 // import { fetchFile } from '@ffmpeg/ffmpeg';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-video-trim',
@@ -26,7 +27,8 @@ export class VideoTrimComponent implements AfterViewInit {
   constructor(
     public videoPlayer: LoadVideoService,
     private domSanitizer: DomSanitizer,
-    public ffmpeg: LoadFfmpegService
+    public ffmpeg: LoadFfmpegService,
+    private snackBar:SnackbarService,
   ) {}
 
   ngAfterViewInit(): void {}
@@ -72,7 +74,7 @@ export class VideoTrimComponent implements AfterViewInit {
     ctx.drawImage(this.videoPlayer.video, 0, 0, canvas.width, canvas.height);
   }
   async trim() {
-    const cmd = `-i ${this.videoPlayer.mediaInfo.name} -ss ${this.clip_data.start_clip} -to ${this.clip_data.end_clip} -c:v libx264 -c:a aac out/${this.videoPlayer.mediaInfo.clean_name}_output.mp4`;
+    const cmd = `-i ${this.videoPlayer.mediaInfo.name} -ss ${this.clip_data.start_clip} -to ${this.clip_data.end_clip} -c:v copy -c:a copy out/${this.videoPlayer.mediaInfo.clean_name}_output.mp4`;
     
     console.log(cmd);
     
@@ -91,6 +93,7 @@ export class VideoTrimComponent implements AfterViewInit {
     );
     // console.log(da);
     this.downLoadFile(video);
+    this.snackBar.openSnackBar('File Downloaded')
   }
   toTime(seconds: number) {
     var date = new Date(0);
