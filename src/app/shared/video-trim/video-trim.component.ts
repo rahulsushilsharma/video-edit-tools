@@ -28,10 +28,10 @@ export class VideoTrimComponent implements AfterViewInit {
     public videoPlayer: LoadVideoService,
     private domSanitizer: DomSanitizer,
     public ffmpeg: LoadFfmpegService,
-    private snackBar:SnackbarService,
-  ) {}
+    private snackBar: SnackbarService,
+  ) { }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void { }
 
   ngAfterContentInit() {
     this.seek_steps = 1 / 60;
@@ -75,9 +75,9 @@ export class VideoTrimComponent implements AfterViewInit {
   }
   async trim() {
     const cmd = `-i ${this.videoPlayer.mediaInfo.name} -ss ${this.clip_data.start_clip} -to ${this.clip_data.end_clip} -c:v copy -c:a copy out/${this.videoPlayer.mediaInfo.clean_name}_output.mp4`;
-    
+
     console.log(cmd);
-    
+
     let start = new Date().getTime();
     await this.ffmpeg.runCommand(cmd);
     let end = new Date().getTime();
