@@ -10,6 +10,7 @@
       width="620px"
       height="480px"
       [src]="loadVideo.videoBlobUrl"
+      (loadedmetadata)="onMetadata($event, video_player)"
     ></video>
   </div>
 </div>

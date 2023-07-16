@@ -2,7 +2,7 @@
   <h2>Trim Video</h2>
   <div class="trim_slider">
     <img width="100%" [src]="videoPlayer.audioWaveformUrl" alt="">
-    <mat-slider min="0" [max]="video_duration" [step]="seek_steps">
+    <mat-slider min="0" [max]="videoPlayer.video.duration" [step]="seek_steps">
       <input matSliderStartThumb maticon #start_range (change)="forward(start_range.value)" />
       <input matSliderEndThumb #end_range (change)="backward(end_range.value)" />
     </mat-slider>
@@ -22,7 +22,7 @@
   <div class="flex data">
     <p>Clip Details</p>
     <p>Start Clip {{ clip_data.calc_start||0 | number: '.3' }}</p>
-    <p>End Clip {{ clip_data.calc_end||0 | number: '.3' }}</p>
+    <p>End Clip {{ clip_data.calc_end||videoPlayer.video.duration | number: '.3' }}</p>
     <p>Length {{ clip_data.length||0 | number: '.3' }}</p>
 
   </div>

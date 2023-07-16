@@ -12,4 +12,11 @@ export class VideoPlayerComponent implements AfterViewInit{
   ngAfterViewInit(): void {
     this.loadVideo.video = this.video_player.nativeElement
   }
+
+  onMetadata(e:any, video:any) {
+    console.log('metadata: ', e);
+    console.log('duration: ', video);
+
+  }
+
 }

@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class UiControlsService {
 
   components: components = {
-    'TrimComponentViewToggle': true,
+    'TrimComponentViewToggle': false,
     'ProgressComponentViewToggle': false,
     'FileInputComponentViewToggle': false,
     'FileSystemComponentViewToggle': false,
