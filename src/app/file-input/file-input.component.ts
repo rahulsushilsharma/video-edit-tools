@@ -48,7 +48,7 @@ export class FileInputComponent {
     await this.ffmpeg.load();
     let file = await fetchFile(blob);
     this.ffmpeg.ffmpeg.FS('writeFile', this.loadVideo.mediaInfo.name, file);
-    this.UiControls.FileInputComponentViewToggle = true;
+    this.UiControls.components.FileInputComponentViewToggle = true;
   }
   onDrop(event: DragEvent) {
     event.preventDefault();
@@ -77,7 +77,7 @@ export class FileInputComponent {
     await this.ffmpeg.load();
     let file = await fetchFile(files[0]);
     this.ffmpeg.ffmpeg.FS('writeFile', this.loadVideo.mediaInfo.name, file);
-    this.UiControls.FileInputComponentViewToggle = true;
+    this.UiControls.components.FileInputComponentViewToggle = true;
   }
 
   async onFileSelected(event: any) {
@@ -90,7 +90,7 @@ export class FileInputComponent {
     await this.ffmpeg.load();
     let file1 = await fetchFile(file);
     this.ffmpeg.ffmpeg.FS('writeFile', this.loadVideo.mediaInfo.name, file1);
-    this.UiControls.FileInputComponentViewToggle = true;
+    this.UiControls.components.FileInputComponentViewToggle = true;
   }
   setFileMeta(file: any) {
     let name: string = file.name.trim().replace(/[^0-9a-zA-Z.]/g, '');

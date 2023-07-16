@@ -1,49 +1,24 @@
 <nav class="nav__cont" #nav_>
-  <button
-    (click)="
-      UiControls.TrimComponentViewToggle = !UiControls.TrimComponentViewToggle
-    "
-    matTooltip="Trim Media"
-    matTooltipPosition="right"
-    mat-icon-button
-    color="primary"
-  >
+  <button (click)="
+      UiControls.toggleComponent('TrimComponentViewToggle')" matTooltip="Trim Media" matTooltipPosition="right"
+    mat-icon-button color="primary">
     <mat-icon>content_cut</mat-icon>
   </button>
-  <button
-    matTooltip="View Files"
-    matTooltipPosition="right"
-    (click)="
-      UiControls.FileSystemComponentViewToggle =
-        !UiControls.FileSystemComponentViewToggle
-    "
-    mat-icon-button
-    color="primary"
-  >
+  <button matTooltip="View Files" matTooltipPosition="right" (click)="UiControls.toggleComponent('FileSystemComponentViewToggle')
+     
+    " mat-icon-button color="primary">
     <mat-icon>file_copy</mat-icon>
   </button>
-  <button
-    matTooltip="Convert Media to different format"
-    matTooltipPosition="right"
-    (click)="
-      UiControls.FormatConverterComponentViewToggle =
-        !UiControls.FormatConverterComponentViewToggle
-    "
-    mat-icon-button
-    color="primary"
-  >
+  <button matTooltip="Convert Media to different format" matTooltipPosition="right" (click)="
+  UiControls.toggleComponent('FormatConverterComponentViewToggle')
+   
+    " mat-icon-button color="primary">
     <mat-icon>repeat</mat-icon>
   </button>
-  <button
-    matTooltip="Extract Audio from video"
-    matTooltipPosition="right"
-    (click)="
-      UiControls.AudioExtractionComponentViewToggle =
-        !UiControls.AudioExtractionComponentViewToggle
-    "
-    mat-icon-button
-    color="primary"
-  >
+  <button matTooltip="Extract Audio from video" matTooltipPosition="right" (click)="
+  UiControls.toggleComponent('AudioExtractionComponentViewToggle')
+   
+    " mat-icon-button color="primary">
     <mat-icon>music_note</mat-icon>
   </button>
 </nav>
