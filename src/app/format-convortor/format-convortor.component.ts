@@ -10,7 +10,7 @@ import { LoadVideoService } from '../services/load-video.service';
 export class FormatConvortorComponent {
   file!: Uint8Array;
 
-  formats = ['.mp4','.mov','.ogg','.avi','.flv','mkv','webm']
+  formats = ['.mp4','.mov','.ogg','.avi','.flv','mkv','.webm']
   selectedFormat!:string
   constructor(
     public videoPlayer: LoadVideoService,

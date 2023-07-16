@@ -34,8 +34,19 @@ export class VideoTrimComponent implements AfterViewInit {
   ngAfterViewInit(): void { }
 
   ngAfterContentInit() {
+    this.init()
+  }
+  async delay(millisec: number | undefined) {
+    return new Promise(resolve => {
+      setTimeout(() => { resolve('') }, millisec);
+    })
+  }
+  async init() {
+    await this.delay(300)
     this.seek_steps = 1 / 60;
     this.video_duration = this.videoPlayer.video.duration;
+    this.clip_data.calc_end = this.videoPlayer.video.duration?.toString();
+    console.log(this.video_duration)
   }
 
   forward(val: any) {

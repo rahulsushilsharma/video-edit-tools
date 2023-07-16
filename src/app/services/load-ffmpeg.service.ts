@@ -31,8 +31,8 @@ export class LoadFfmpegService {
       this.progress = ratio * 100;
       console.log(this.progress);
       if (this.progress > 0 && this.progress < 100)
-        this.UiControls.ProgressComponentViewToggle = true;
-      else this.UiControls.ProgressComponentViewToggle = false;
+        this.UiControls.components.ProgressComponentViewToggle = true;
+      else this.UiControls.components.ProgressComponentViewToggle = false;
 
       /*
        * ratio is a float number between 0 to 1.

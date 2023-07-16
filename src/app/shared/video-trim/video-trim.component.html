@@ -1,43 +1,31 @@
 <div class="container">
-<app-snackbar></app-snackbar>
-
+  <h2>Trim Video</h2>
   <div class="trim_slider">
     <img width="100%" [src]="videoPlayer.audioWaveformUrl" alt="">
-    <mat-slider min="0" [max]="video_duration" [step]="seek_steps">
-      <input
-        matSliderStartThumb
-        maticon
-        #start_range
-        (change)="forward(start_range.value)"
-      />
+    <mat-slider min="0" [max]="videoPlayer.video.duration" [step]="seek_steps">
+      <input matSliderStartThumb maticon #start_range (change)="forward(start_range.value)" />
       <input matSliderEndThumb #end_range (change)="backward(end_range.value)" />
     </mat-slider>
   </div>
   <div class="image">
     <img width="100%" [src]="videoPlayer.audioWaveformUrl" alt="">
   </div>
-  <div class="meta">
-    <div><p>Start Thumb</p><canvas #start_thumb></canvas></div>
-    <div><p>End Thumb</p><canvas #end_thumb></canvas></div>
+  <div class="flex">
     <div>
-    <table>
-      <p>Clip Details</p>
-      <tr>
-        <td>Start Clip</td>
-        <td>{{ clip_data.calc_start||0 | number: '.3' }}</td>
-      </tr>
-      <tr>
-        <td>End Clip</td>
-        <td>{{ clip_data.calc_end||0 | number: '.3' }}</td>
-      </tr>
-      <tr>
-        <td>Length</td>
-        <td>{{ clip_data.length||0 | number: '.3' }}</td>
-      </tr>
-    </table>
+      <p>Start Thumb</p><canvas #start_thumb></canvas>
+    </div>
+    <div>
+      <p>End Thumb</p><canvas #end_thumb></canvas>
+    </div>
+
   </div>
+  <div class="flex data">
+    <p>Clip Details</p>
+    <p>Start Clip {{ clip_data.calc_start||0 | number: '.3' }}</p>
+    <p>End Clip {{ clip_data.calc_end||videoPlayer.video.duration | number: '.3' }}</p>
+    <p>Length {{ clip_data.length||0 | number: '.3' }}</p>
+
   </div>
-  
   <button mat-raised-button color="primary" (click)="trim()">trim</button>
- 
+
 </div>

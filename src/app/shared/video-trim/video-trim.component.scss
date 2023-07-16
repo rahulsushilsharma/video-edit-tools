@@ -7,44 +7,39 @@ mat-slider {
 
 }
 
-table {
-    border-collapse: collapse;
-}
-
-td,
-th {
-    border: 1px solid #dddddd;
-    width: 248px;
-    padding: 5px;
-
-}
-
-.meta {
-    display: grid;
-    // gap: 3em;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 1em;
-}
-
 canvas {
-    outline: wheat 3px solid;
+    outline: #515150 1px solid;
     width: 248px;
     height: 160px;
 }
-.container{
+
+.container {
     display: grid;
     width: 91%;
     margin: 0 auto;
 }
 
-.trim_slider img{
+.trim_slider img {
     position: absolute;
-    /* width: `; */
     z-index: -1;
     top: 0;
     left: 0;
 }
 
-.trim_slider{
+.trim_slider {
     position: relative;
+}
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+.data{
+    background-color: #636363;
+    border-radius: 1em;
+    align-content: center;
+    padding: 0.5em 1em;
+    margin: 1em 0;
+}
+p{
+    margin: 0;
 }

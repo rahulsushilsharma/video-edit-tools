@@ -2,24 +2,24 @@
   <app-sidebar></app-sidebar>
   <div class="main">
     <app-video-player> </app-video-player>
-
-    <app-video-trim *ngIf="UiControls.TrimComponentViewToggle"></app-video-trim>
+ 
+    <app-video-trim *ngIf="UiControls.components.TrimComponentViewToggle"></app-video-trim>
     <!-- <app-extract-audio></app-extract-audio> -->
     <app-processing
-      *ngIf="UiControls.ProgressComponentViewToggle"
+      *ngIf="UiControls.components.ProgressComponentViewToggle"
     ></app-processing>
     <app-file-system
-      *ngIf="UiControls.FileSystemComponentViewToggle"
+      *ngIf="UiControls.components.FileSystemComponentViewToggle"
     ></app-file-system>
     <app-format-convortor
-      *ngIf="UiControls.FormatConverterComponentViewToggle"
+      *ngIf="UiControls.components.FormatConverterComponentViewToggle"
     ></app-format-convortor>
     <app-extract-audio
-      *ngIf="UiControls.AudioExtractionComponentViewToggle"
+      *ngIf="UiControls.components.AudioExtractionComponentViewToggle"
     ></app-extract-audio>
   </div>
 </div>
-<app-file-input *ngIf="!UiControls.FileInputComponentViewToggle">
+<app-file-input *ngIf="!UiControls.components.FileInputComponentViewToggle">
 </app-file-input>
 
 <!-- <app-initial-page *ngIf="!ffmpeg.loaded"></app-initial-page> -->
