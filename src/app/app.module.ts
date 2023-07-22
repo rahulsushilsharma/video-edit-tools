@@ -13,7 +13,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VideoPlayerComponent } from './video-player/video-player.component';
 import { SharedModule } from './shared/shared.module';
 import { InitialPageComponent } from './initial-page/initial-page.component';
-import { FileInputComponent } from './file-input/file-input.component';
 import { FileSystemComponent } from './file-system/file-system.component';
 import { FormatConvortorComponent } from './format-convortor/format-convortor.component';
 import { ThumbGenratorComponent } from './thumb-genrator/thumb-genrator.component';
@@ -23,7 +22,7 @@ import { CombineMediaComponent } from './combine-media/combine-media.component';
   declarations: [
     AppComponent,
     VideoPlayerComponent,
-    FileInputComponent,
+    InitialPageComponent,
     FileSystemComponent,
     FormatConvortorComponent,
     ThumbGenratorComponent,

@@ -1,0 +1,8 @@
+<div class="video-download-progress">
+  <mat-progress-bar mode="determinate" [value]="loadVideo.VideoDownloadProgress"></mat-progress-bar>
+</div>
+<div class="drop-zone" (drop)="onDrop($event)" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)"
+  [class.drag-over]="isDragOver" (click)="fileInput.click()">
+  Click or drop your files here
+</div>
+<input type="file" id="my-file-input" class="file-input" #fileInput (change)="onFileSelected($event)" hidden />

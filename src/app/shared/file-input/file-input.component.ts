@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { LoadFfmpegService } from '.././services/load-ffmpeg.service';
-import { LoadVideoService } from '.././services/load-video.service';
+import { LoadFfmpegService } from '../../services/load-ffmpeg.service';
+import { LoadVideoService } from '../../services/load-video.service';
 import { fetchFile } from '@ffmpeg/ffmpeg';
-import { UiControlsService } from '../services/ui-controls.service';
-import { SnackbarService } from '../services/snackbar.service';
+import { UiControlsService } from '../../services/ui-controls.service';
+import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
   selector: 'app-file-input',

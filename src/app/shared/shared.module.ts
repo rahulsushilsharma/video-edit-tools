@@ -19,6 +19,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FileInputComponent } from './file-input/file-input.component';
 
 const components: any = [
   ShellComponent,
@@ -27,6 +28,7 @@ const components: any = [
   ExtractAudioComponent,
   ProcessingComponent,
   SnackbarComponent,
+  FileInputComponent,
 
 ];
 
