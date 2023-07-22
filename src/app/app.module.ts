@@ -17,6 +17,7 @@ import { FileInputComponent } from './file-input/file-input.component';
 import { FileSystemComponent } from './file-system/file-system.component';
 import { FormatConvortorComponent } from './format-convortor/format-convortor.component';
 import { ThumbGenratorComponent } from './thumb-genrator/thumb-genrator.component';
+import { CombineMediaComponent } from './combine-media/combine-media.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ThumbGenratorComponent } from './thumb-genrator/thumb-genrator.componen
     FileSystemComponent,
     FormatConvortorComponent,
     ThumbGenratorComponent,
+    CombineMediaComponent,
   ],
   imports: [
     BrowserModule,
