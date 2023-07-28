@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LoadFfmpegService } from '../../services/load-ffmpeg.service';
 import { LoadVideoService } from '../../services/load-video.service';
@@ -13,6 +13,7 @@ import { SnackbarService } from '../../services/snackbar.service';
 
 })
 export class FileInputComponent {
+  @Input() ffmpegInputPath = ''
   constructor(
     public ffmpeg: LoadFfmpegService,
     public loadVideo: LoadVideoService,
@@ -29,6 +30,8 @@ export class FileInputComponent {
 
     await this.ffmpeg.load();
     this.snackBar.openSnackBar(' dependicies downloaded', 'ok', 'right', 'top', 5000)
+    console.log(this.ffmpegInputPath)
+
 
   }
   isDragOver = false;
@@ -76,7 +79,7 @@ export class FileInputComponent {
 
     await this.ffmpeg.load();
     let file = await fetchFile(files[0]);
-    this.ffmpeg.ffmpeg.FS('writeFile', this.loadVideo.mediaInfo.name, file);
+    this.ffmpeg.ffmpeg.FS('writeFile', this.ffmpegInputPath+'/'+this.loadVideo.mediaInfo.name, file);
     this.UiControls.components.FileInputComponentViewToggle = true;
     this.UiControls.components.TrimComponentViewToggle = true;
   }
@@ -91,6 +94,7 @@ export class FileInputComponent {
     await this.ffmpeg.load();
     let file1 = await fetchFile(file);
     this.ffmpeg.ffmpeg.FS('writeFile', this.loadVideo.mediaInfo.name, file1);
+    this.ffmpeg.ffmpeg.FS('writeFile', this.ffmpegInputPath+'/'+this.loadVideo.mediaInfo.name, file1);
     this.UiControls.components.FileInputComponentViewToggle = true;
     this.UiControls.components.TrimComponentViewToggle = true;
   }
