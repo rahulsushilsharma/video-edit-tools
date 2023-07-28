@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./thumb-genrator.component.scss']
 })
 export class ThumbGenratorComponent {
+//to impliment
 
 }
