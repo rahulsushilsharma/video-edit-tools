@@ -26,6 +26,14 @@ export class UiControlsService {
 
 }
 
+interface FeatureComponents {
+  TrimComponentViewToggle: boolean;
+  ProgressComponentViewToggle: boolean;
+  FileInputComponentViewToggle: boolean;
+  FileSystemComponentViewToggle: boolean;
+  FormatConverterComponentViewToggle: boolean;
+  AudioExtractionComponentViewToggle: boolean;
+}
 interface components {
   TrimComponentViewToggle: boolean;
   ProgressComponentViewToggle: boolean;

@@ -98,6 +98,7 @@ export class VideoTrimComponent implements AfterViewInit {
       'readFile',
       `out/${this.videoPlayer.mediaInfo.clean_name}_output.mp4`
     );
+    
     let video = new Blob([da]);
     this.out_video = this.domSanitizer.bypassSecurityTrustUrl(
       URL.createObjectURL(video)
