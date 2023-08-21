@@ -17,6 +17,7 @@ import { FileSystemComponent } from './file-system/file-system.component';
 import { FormatConvortorComponent } from './format-convortor/format-convortor.component';
 import { ThumbGenratorComponent } from './thumb-genrator/thumb-genrator.component';
 import { CombineMediaComponent } from './combine-media/combine-media.component';
+import { ChangeAspectRatioComponent } from './change-aspect-ratio/change-aspect-ratio.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CombineMediaComponent } from './combine-media/combine-media.component';
     FormatConvortorComponent,
     ThumbGenratorComponent,
     CombineMediaComponent,
+    ChangeAspectRatioComponent,
   ],
   imports: [
     BrowserModule,
